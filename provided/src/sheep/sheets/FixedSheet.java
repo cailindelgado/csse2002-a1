@@ -25,8 +25,9 @@ public class FixedSheet {
      */
     public static ViewElement formulaAt(int row, int column) {
         if (checker(row, column, null)) {
-            return ViewElement();
+            return new ViewElement("GREEN", "Green", "Black");
         }
+        return new ViewElement(null, "White", "Black");
     }
 
     /**
