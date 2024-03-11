@@ -20,7 +20,9 @@ public class FixedSheet implements SheetView, SheetUpdate {
      */
     public  ViewElement formulaAt(int row, int column) {
         if (checker(row, column, null)) {
-            return new ViewElement("GREEN", "Green", "Black");
+            if ((row >= 2) && (row <= 3) && (column >= 2) && (column <= 3)) {
+                return new ViewElement("GREEN", "Green", "Black");
+            }
         }
         return new ViewElement(null, "White", "Black");
     }
@@ -35,7 +37,9 @@ public class FixedSheet implements SheetView, SheetUpdate {
      */
     public ViewElement valueAt(int row, int column) {
         if (checker(row, column, null)) {
-            return new ViewElement("W", "Green", "Black");
+            if ((row >= 2) && (row <= 3) && (column >= 2) && (column <= 3)) {
+                return new ViewElement("W", "Green", "Black");
+            }
         }
         return new ViewElement(null, "White", "Black");
     }
