@@ -1,6 +1,7 @@
 package sheep;
 
 import sheep.core.*;
+import sheep.sheets.*;
 import sheep.fun.FunException;
 import sheep.ui.graphical.GUI;
 import sheep.ui.UI;
@@ -19,8 +20,8 @@ public class Main {
      */
     public static void main(String[] args) throws FunException {
         // Stage 0: Completion of core and FixedSheet.
-//        FixedSheet simple = new FixedSheet();
-//        render(simple, simple);
+    	  FixedSheet simple = new FixedSheet();
+          render(simple, simple);
 
         // Stage 1: Completion of constant expressions and DisplaySheet.
 //        ExpressionFactory factory = new CoreFactory();
