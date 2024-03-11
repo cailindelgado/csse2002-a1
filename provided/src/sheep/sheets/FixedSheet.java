@@ -95,6 +95,8 @@ public class FixedSheet implements SheetView, SheetUpdate {
         } else {
             return (input != null && req1 && req2);
         }
+
+        // "Don't you want to help the world with your code, and make it public?" - Vishan on making Java methods private
     }
 
 }
