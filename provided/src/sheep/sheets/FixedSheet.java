@@ -5,6 +5,8 @@ import sheep.core.SheetView;
 import sheep.core.UpdateResponse;
 import sheep.core.ViewElement;
 
+import javax.swing.text.View;
+
 /**
  * Spreadsheet that has fixed values in every cell.
  *
@@ -19,10 +21,12 @@ public class FixedSheet {
      * @param row The row index to update
      * @param column The column index to update
      * @return An approximately formatted cell based on whether it is highlighted or not.
-     * @requires 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
+     * @requires 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public static ViewElement formulaAt(int row, int column) {
-
+        if (checker(row, column, null)) {
+            return ViewElement();
+        }
     }
 
     /**
@@ -31,10 +35,13 @@ public class FixedSheet {
      * @param row The row index to update
      * @param column The column index to update
      * @return An approximately formatted cell based on whether it is highlighted or not.
-     * @requires 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
+     * @requires 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public static ViewElement valueAt(int row, int column) {
-
+        if (checker(row, column, null)) {
+            return new ViewElement("W", "Green", "Black");
+        }
+        return new ViewElement(null, "White", "Black");
     }
 
     /**
@@ -84,7 +91,11 @@ public class FixedSheet {
     private static boolean checker(int row, int column, String input) {
         boolean req1 = ((0 < row) || (0 == row)) && (row < getRows());
         boolean req2 = ((0 < column) || (0 == column)) && (column < getColumns());
-        return (input != null && req1 && req2);
+        if (input == null) {
+            return (req1 && req2);
+        } else {
+            return (input != null && req1 && req2);
+        }
     }
 
 }
