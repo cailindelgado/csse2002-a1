@@ -1,5 +1,7 @@
 package sheep.expression;
 
+import java.util.*;
+
 /**
  * Is the base type from which all values extend.
  */
@@ -7,16 +9,14 @@ public abstract class Expression {
     //reference is true when expression is a reference,
     private boolean reference = false;
 
-    public Expression(boolean reference) {
-        this.reference = reference;
-    }
+    public Expression() {}
 
     /**
      * The set of references depended upon by the expression
      * @return A set containing all the transitive references depended upon by the expresson.
      */
 //    public abstract Set<String> dependencies() {
-//                  ????
+//        return empty set;
 //    }
 
     /**
@@ -32,9 +32,17 @@ public abstract class Expression {
 //    public abstract Expression value(Map<String, Expression> state) throws TypeError {
 //    }
 
+    /**
+     * True if the expression is a reference
+     * @return true if the expression is a reference
+     */
     public boolean isReference() {
-    return reference;
+        return reference;
     }
+
+//    public abstract String render() {
+//
+//    }
 
 }
 
