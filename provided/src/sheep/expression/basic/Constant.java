@@ -67,9 +67,9 @@ public class Constant extends Expression {
      * @param state A mapping of references to the expression they hold
      * @return Itself
      */
-//    public Expression value(Map<String, Expression> state) {
-//        return
-//    }
+    public Expression value(Map<String, Expression> state) {
+        return this;
+    }
 
     /**
      * Evaluate the exopression to a numeric value
