@@ -7,13 +7,25 @@ import sheep.expression.Expression;
  */
 public class Minus extends Arithmetic {
 
-    private Expression[] arguments;
+    /**
+     * Construct a new minus expression
+     * @param arguments A sequence of sub-expressions to perform the operation upon.
+     */
     public Minus(Expression[] arguments) {
         super("-", arguments);
-        this.arguments = arguments;
     }
 
+    /**
+     * perform a minus operation over the list of arguments
+     * @param arguments A list of numbers to perform the operation upon
+     * @return the result of minus
+     */
     protected long perform(long[] arguments) {
-        return 0;
+        long result = arguments[0];
+        for (int index = 1; index < arguments.length; index++){
+            result -= arguments[index];
+        }
+        return result;
     }
+
 }

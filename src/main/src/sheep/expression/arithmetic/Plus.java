@@ -15,9 +15,6 @@ public class Plus extends Arithmetic {
      */
     public Plus(Expression[] arguments) {
         super("+", arguments);
-        if (arguments.length > 0) {
-
-        }
     }
 
     /**
