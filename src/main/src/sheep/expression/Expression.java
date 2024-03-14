@@ -5,11 +5,11 @@ import java.util.*;
 /**
  * Is the base type from which all values extend.
  */
-public abstract class Expression {
+//public abstract class Expression {
     //reference is true when expression is a reference,
-    private boolean reference = false;
+//    private boolean reference = false;
 
-    public Expression() {}
+//    public Expression() {}
 
     /**
      * The set of references depended upon by the expression
@@ -36,13 +36,13 @@ public abstract class Expression {
      * True if the expression is a reference
      * @return true if the expression is a reference
      */
-    public boolean isReference() {
-        return reference;
-    }
+//    public boolean isReference() {
+//        return reference;
+//    }
 
 //    public abstract String render() {
 //
 //    }
 
-}
+//}
 
