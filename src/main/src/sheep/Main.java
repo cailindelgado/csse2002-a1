@@ -2,6 +2,9 @@ package sheep;
 
 import sheep.core.*;
 import sheep.sheets.*;
+import sheep.expression.*;
+import sheep.parsing.*;
+import sheep.fun.*;
 import sheep.fun.FunException;
 import sheep.ui.graphical.GUI;
 import sheep.ui.UI;
@@ -23,14 +26,14 @@ public class Main {
     	  FixedSheet simple = new FixedSheet();
           render(simple, simple);
 
-        // Stage 1: Completion of constant expressions and DisplaySheet.
-//        ExpressionFactory factory = new CoreFactory();
-//        Parser parser = new SimpleParser(factory);
+//         Stage 1: Completion of constant expressions and DisplaySheet.
+        ExpressionFactory factory = new CoreFactory();
+        Parser parser = new SimpleParser(factory);
 //
 //        DisplaySheet sheet = new DisplaySheet(parser, factory.createEmpty(), 20, 10);
 //        render(sheet, sheet);
 
-        // Stage 1a: Pre-populate sheets (just for fun).
+//         Stage 1a: Pre-populate sheets (just for fun).
 //        new FibonacciConstants(20).draw(sheet);
 
         // Stage 2: Completion of basic Sheet functionality.

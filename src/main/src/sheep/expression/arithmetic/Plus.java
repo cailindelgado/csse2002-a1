@@ -7,8 +7,6 @@ import sheep.expression.Expression;
  */
 public class Plus extends Arithmetic {
 
-    private long[] arguments;
-
     /**
      * construct a new plus expression
      * @param arguments A sequence of sub-expressions to perform the operation upon
@@ -22,7 +20,7 @@ public class Plus extends Arithmetic {
      * @param arguments A list of numbers to perform the operation upon
      * @return The result of plus
      */
-    protected long perform(long[] arguments) {
+       protected long perform(long[] arguments) {
         long result = 0;
         for (long number : arguments) {
             result += number;

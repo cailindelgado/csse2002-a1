@@ -1,2 +1,4 @@
-package test.sheep.expression;public class ExpressionTest {
+package test.sheep.expression;
+
+public class ExpressionTest {
 }

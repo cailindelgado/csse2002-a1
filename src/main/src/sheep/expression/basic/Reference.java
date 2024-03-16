@@ -58,7 +58,6 @@ public class Reference extends Expression{
       if (obj instanceof Reference reference) {
           return (reference.getIdentifier() == identifier) ? true : false;
       } else return false;
-
     }
 
     /**
@@ -72,7 +71,11 @@ public class Reference extends Expression{
      * Dependencies of the reference expression
      * @return A set containing the references' identifier
      */
-//    public Set<String> dependencies() {return Set<toString()>;}
+    public Set<String> dependencies() {
+        Set<String> dependency = new HashSet<String>();
+        dependency.add(identifier);
+        return dependency;
+    }
 
     /**
      * The result of evaluating this expression
@@ -81,7 +84,6 @@ public class Reference extends Expression{
      * @throws TypeError If a type error occurs in the process of evaluation
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
-        return null;
     }
 
     /**
@@ -89,7 +91,8 @@ public class Reference extends Expression{
      * @return Nothing will be returned as a type error will be thrown
      * @throws TypeError Will always be thrown by {@link Reference}
      */
-    public long value() throws TypeError {throw new TypeError("??");}
+    public long value() throws TypeError {
+    }
 
     /**
      * The string representation of the expression

@@ -44,7 +44,6 @@ public class Constant extends Expression {
         return false;
     }
 
-
     /**
      * A hashcode method that respects the equals(Object) method.
      * @return An appropriate hashcode value for this instance.
@@ -69,7 +68,7 @@ public class Constant extends Expression {
      */
     public Expression value(Map<String, Expression> state) {
         return this;
-    }
+    } //might be wrong
 
     /**
      * Evaluate the exopression to a numeric value
