@@ -1,6 +1,7 @@
 package sheep.parsing;
 
 import sheep.expression.*;
+import sheep.expression.arithmetic.*;
 
 /**
  * Parser of basic expressions and arithmetic expressions.
@@ -26,7 +27,48 @@ public class SimpleParser implements Parser{
         if (input.trim().equals("")) {
             return factory.createEmpty();
         }
-        String[] inputParts = input.trim().split(" ");
 
+        if (input.contains("=")) {
+            String[] inputBits = input.trim().split("=");
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Equal(subBits);
+
+        } else if (input.contains("<")) {
+            String[] inputBits = input.trim().split("<");
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Less(subBits);
+
+        }  else if (input.contains("+")) {
+            String[] inputBits = input.trim().split("[+]"); //+ is a quantifier so [] required
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Plus(subBits);
+
+        } else if (input.contains("-")) {
+            String[] inputBits = input.trim().split("-");
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Minus(subBits);
+
+        } else if (input.contains("*")) {
+            String[] inputBits = input.trim().split("[*]"); //* is a quantifier so [] required
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Times(subBits);
+
+        }
+
+        if (input.contains("/")) {
+            String[] inputBits = input.trim().split("/");
+            Expression[] subBits = parseAssistant(inputBits);
+            return new Divide(subBits);
+        }
+
+        return null;
+    }
+
+    private Expression[] parseAssistant(String[] bits) throws ParseException {
+        Expression[] result = new Expression[bits.length];
+        for (int indx = 0; indx < bits.length; indx++) {
+            result[indx] = parse(bits[indx]);
+        }
+        return result;
     }
 }

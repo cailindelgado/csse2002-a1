@@ -15,12 +15,11 @@ public class CellLocation {
      * Construct a new cell location at the given row and column
      * @param row A number representing the row number.
      * @param column A character representing the column.
-     * @requires row >= 0, column is between 'A' and 'Z' inclusive
+     * @require row >= 0, column is between 'A' and 'Z' inclusive
      */
     public CellLocation(int row , char column) {
        this.row = row;
-       char columnC = column;
-
+       this.column = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(column);
        //In this constructor column chars are converted to column indexes, e.g. column 'A' would become 0 and 'B' would become 1 and so on.
     }
 
@@ -28,7 +27,7 @@ public class CellLocation {
      * Construct a new cell location at the given row and column.
      * @param row A number representing the row number.
      * @param column A number representing the column.
-     * @requires row and column to be between 0 and 25 inclusive.
+     * @require row and column to be between 0 and 25 inclusive.
      */
     public CellLocation(int row, int column) {
         this.row = row;
@@ -40,15 +39,13 @@ public class CellLocation {
      * @param ref A string that may represent a cell location
      * @return An optional containing a cell reference if the string is a reference, otherwise an
      * empty optional.
-     * @requires ref not null.
+     * @require ref not null.
      */
     public static Optional<CellLocation> maybeReference(String ref) {
         if (ref != null) {
-
             return Optional.empty();
         }
-
-        return Optional.empty();
+        return null;
     }
 
     /**
@@ -76,7 +73,7 @@ public class CellLocation {
      */
     @Override
     public boolean equals(Object obj) {
-        return true;
+        return false;
     }
 
 }

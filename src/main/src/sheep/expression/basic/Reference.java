@@ -56,7 +56,7 @@ public class Reference extends Expression{
    @Override
     public boolean equals(Object obj) {
       if (obj instanceof Reference reference) {
-          return (reference.getIdentifier() == identifier) ? true : false;
+          return reference.getIdentifier().equals(identifier);
       } else return false;
     }
 
@@ -84,6 +84,7 @@ public class Reference extends Expression{
      * @throws TypeError If a type error occurs in the process of evaluation
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
+        return null;
     }
 
     /**
@@ -92,6 +93,7 @@ public class Reference extends Expression{
      * @throws TypeError Will always be thrown by {@link Reference}
      */
     public long value() throws TypeError {
+        return 0;
     }
 
     /**

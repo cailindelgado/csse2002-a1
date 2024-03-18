@@ -10,7 +10,7 @@ public interface SheetUpdate {
      * @param row The row index to update.
      * @param column The column index to update.
      * @param input The value as a string to replace within the sheet.
-     * @requires input != null
+     * @require input != null
      * @return An {@link UpdateResponse} indicating success or failure with a message.
      */
     UpdateResponse update(int row, int column, String input);

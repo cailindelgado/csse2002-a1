@@ -67,7 +67,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * @param row The row index of the cell.
      * @param column The column index of the cell.
      * @return A {@link ViewElement} that details how to render the cell's formula.
-     * @requires 0 <= row < getRows(), 0 <= column < getColumns()
+     * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public ViewElement valueAt(int row, int column) {
         if (checker(row, column)) {
@@ -80,7 +80,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * determine the formula to display at this cell.
      * @param row The row index of the cell.
      * @param column The column index of the cell.
-     * @requires 0 <= row < getRows(), 0 <= column < getColumns()
+     * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public ViewElement formulaAt(int row, int column) {
         if (checker(row, column)) {
@@ -99,6 +99,6 @@ public class DisplaySheet implements SheetUpdate, SheetView {
         boolean req1 = ((0 == row) || (0 < row)) && (row < getRows());
         boolean req2 = ((0 == column) || (0 < column)) && (column < getColumns());
 
-        return (req1 && req2) ? true : false;
+        return (req1 && req2);
     }
 }
