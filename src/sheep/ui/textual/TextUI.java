@@ -1,8 +1,8 @@
 package sheep.ui.textual;
 
-import sheep.core.UpdateResponse;
 import sheep.core.SheetUpdate;
 import sheep.core.SheetView;
+import sheep.core.UpdateResponse;
 import sheep.ui.UI;
 
 import java.io.PrintStream;

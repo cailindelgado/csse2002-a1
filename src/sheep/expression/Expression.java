@@ -1,6 +1,7 @@
 package sheep.expression;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Is the base type from which all values extend.

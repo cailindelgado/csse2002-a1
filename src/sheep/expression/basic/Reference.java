@@ -3,7 +3,9 @@ package sheep.expression.basic;
 import sheep.expression.Expression;
 import sheep.expression.TypeError;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A reference to a given identifier

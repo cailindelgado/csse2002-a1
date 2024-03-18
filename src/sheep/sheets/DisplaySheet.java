@@ -1,8 +1,11 @@
 package sheep.sheets;
 
-import sheep.core.*;
-import sheep.parsing.Parser;
+import sheep.core.SheetUpdate;
+import sheep.core.SheetView;
+import sheep.core.UpdateResponse;
+import sheep.core.ViewElement;
 import sheep.expression.Expression;
+import sheep.parsing.Parser;
 
 
 public class DisplaySheet implements SheetUpdate, SheetView {

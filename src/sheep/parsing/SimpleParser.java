@@ -1,6 +1,7 @@
 package sheep.parsing;
 
-import sheep.expression.*;
+import sheep.expression.Expression;
+import sheep.expression.ExpressionFactory;
 import sheep.expression.arithmetic.*;
 
 /**

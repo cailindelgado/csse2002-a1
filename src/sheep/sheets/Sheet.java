@@ -1,18 +1,5 @@
 package sheep.sheets;
 
-import sheep.core.SheetUpdate;
-import sheep.core.SheetView;
-import sheep.core.UpdateResponse;
-import sheep.core.ViewElement;
-import sheep.expression.TypeError;
-import sheep.parsing.Parser;
-import sheep.expression.Expression;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-
 //public class Sheet implements SheetView, SheetUpdate {
 //
 //    private Parser parser;

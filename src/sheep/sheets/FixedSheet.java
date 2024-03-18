@@ -1,6 +1,9 @@
 package sheep.sheets;
 
-import sheep.core.*;
+import sheep.core.SheetUpdate;
+import sheep.core.SheetView;
+import sheep.core.UpdateResponse;
+import sheep.core.ViewElement;
 
 /**
  * Spreadsheet that has fixed values in every cell.

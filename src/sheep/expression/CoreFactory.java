@@ -1,7 +1,10 @@
 package sheep.expression;
 
-import sheep.expression.basic.*;
 import sheep.expression.arithmetic.Arithmetic;
+import sheep.expression.basic.Constant;
+import sheep.expression.basic.Nothing;
+import sheep.expression.basic.Reference;
+
 import static sheep.expression.arithmetic.Arithmetic.*;
 
 public class CoreFactory implements ExpressionFactory {

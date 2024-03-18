@@ -2,9 +2,11 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 import sheep.expression.TypeError;
-import sheep.expression.basic.*;
+import sheep.expression.basic.Constant;
+import sheep.expression.basic.Reference;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 
 public abstract class Arithmetic extends Expression {
     final private String operator;

@@ -1,7 +1,10 @@
 package sheep.expression.basic;
 
 import sheep.expression.Expression;
-import java.util.*;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 public class Constant extends Expression {
     private long number;

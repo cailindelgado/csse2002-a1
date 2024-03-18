@@ -1,8 +1,5 @@
 package sheep.sheets;
 
-import sheep.expression.Expression;
-import sheep.parsing.Parser;
-
 //public class Sheetbuilder {
 //
 //    private Parser parser;

@@ -1,9 +1,11 @@
 package sheep.expression.basic;
 
-import sheep.expression.*;
+import sheep.expression.Expression;
+import sheep.expression.TypeError;
 
-import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * An empty expression
