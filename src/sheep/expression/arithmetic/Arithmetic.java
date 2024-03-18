@@ -137,7 +137,7 @@ public abstract class Arithmetic extends Expression {
     }
 
     /**
-     * The string representation of the expression
+     * Returns the exact same thing as render()
      * @return the string representation of the expression.
      */
     public String toString() {return render();}

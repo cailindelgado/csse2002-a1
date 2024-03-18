@@ -23,7 +23,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
                 return new ViewElement("GREEN", "Green", "Black");
             }
         }
-        return new ViewElement(null, "White", "Black");
+        return new ViewElement("", "White", "Black");
     }
 
     /**
@@ -40,7 +40,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
                 return new ViewElement("W", "Green", "Black");
             }
         }
-        return new ViewElement(null, "White", "Black");
+        return new ViewElement("", "White", "Black");
     }
 
     /**
@@ -69,7 +69,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      */
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column, input)) {
-            return UpdateResponse.fail("A failed update as the sheet is view only");
+            return UpdateResponse.fail("Sheet it view only.");
         }
         return UpdateResponse.success();
     }

@@ -17,10 +17,9 @@ public class CellLocation {
      * @param column A character representing the column.
      * @require row >= 0, column is between 'A' and 'Z' inclusive
      */
-    public CellLocation(int row , char column) {
-       this.row = row;
-       this.column = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(column);
-       //In this constructor column chars are converted to column indexes, e.g. column 'A' would become 0 and 'B' would become 1 and so on.
+    public CellLocation(int row, char column) {
+        this.row = row;
+        this.column = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(column);
     }
 
     /**
@@ -75,5 +74,14 @@ public class CellLocation {
     public boolean equals(Object obj) {
         return false;
     }
+
+    public int hashCode() {
+        return 0;
+    }
+
+    public String toString() {
+        return String.valueOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(column)) + row;
+    }
+
 
 }

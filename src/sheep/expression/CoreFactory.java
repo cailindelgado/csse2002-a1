@@ -68,7 +68,7 @@ public class CoreFactory implements ExpressionFactory {
 			}
 		}
 		throw new InvalidExpression("args not of type Expression[]");
-    }
+	}
 
 }
 

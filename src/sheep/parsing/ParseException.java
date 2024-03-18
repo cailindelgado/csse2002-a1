@@ -5,7 +5,12 @@ package sheep.parsing;
  */
 public class ParseException extends Exception {
 
-    public ParseException() {super();}
+    /**
+     * Constructor for when no message or base passed in
+     */
+    public ParseException() {
+        super();
+    }
 
     /**
      * Construct a new exception with a description of the exception

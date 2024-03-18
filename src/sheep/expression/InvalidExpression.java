@@ -2,7 +2,10 @@ package sheep.expression;
 
 public class InvalidExpression extends Exception {
 
-	public InvalidExpression() {super();}
+	public InvalidExpression() {
+		super();
+	}
+
 	/**
 	 * Construct a new exception with another exception as the base cause
 	 * @param message The description of the exception
