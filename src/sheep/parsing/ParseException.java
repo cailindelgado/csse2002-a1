@@ -5,6 +5,8 @@ package sheep.parsing;
  */
 public class ParseException extends Exception {
 
+    public ParseException() {super();}
+
     /**
      * Construct a new exception with a description of the exception
      * @param message The description of the exception
