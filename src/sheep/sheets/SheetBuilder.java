@@ -1,6 +1,6 @@
 package sheep.sheets;
 
-public class Sheetbuilder {
+public class SheetBuilder {
 //
 //    private Parser parser;
 //    private Expression defaultExpression;

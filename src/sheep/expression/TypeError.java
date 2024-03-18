@@ -5,6 +5,7 @@ package sheep.expression;
  */
 public class TypeError extends Exception {
 
+    public TypeError() {super();}
     /**
      * @param message The description of the exception.
      */
