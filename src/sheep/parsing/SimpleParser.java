@@ -26,6 +26,9 @@ public class SimpleParser implements Parser{
      * @throws ParseException If the string is not recognisable as an expression.
      */
     public Expression parse(String input) throws ParseException {
+
+        System.out.println(input);
+
         if (input.trim().equals("")) {
             return factory.createEmpty();
         }

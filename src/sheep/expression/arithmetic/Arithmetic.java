@@ -16,6 +16,7 @@ public abstract class Arithmetic extends Expression {
      * Construct a new expression
      * @param operator The name of the arithmetic expression
      * @param arguments A sequence of sub-expressions to perform the operation upon
+     * @require arguments length > 0
      */
     protected Arithmetic(String operator, Expression[] arguments) {
         this.operator = operator;
