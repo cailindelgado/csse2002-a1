@@ -1,4 +1,4 @@
-package test.sheep.expression;
+package sheep.expression;
 
 public class ExpressionTest {
 }

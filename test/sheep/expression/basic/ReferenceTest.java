@@ -1,4 +1,4 @@
-package test.sheep.expression.basic;
+package sheep.expression.basic;
 
 public class ReferenceTest {
 }

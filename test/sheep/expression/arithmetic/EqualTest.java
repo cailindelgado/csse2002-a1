@@ -1,8 +1,6 @@
-package test.sheep.expression.arithmetic;
+package sheep.expression.arithmetic;
 
 import org.junit.Test;
-import sheep.expression.arithmetic.Equal;
-import sheep.expression.basic.Constant;
 
 public class EqualTest {
 
