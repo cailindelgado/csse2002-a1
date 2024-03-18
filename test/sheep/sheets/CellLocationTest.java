@@ -1,4 +1,4 @@
-package test.sheep.sheets;
+package sheep;
 
 public class CellLocationTest {
 }
