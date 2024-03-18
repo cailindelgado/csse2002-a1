@@ -1,4 +1,4 @@
-package test.sheep.expression.basic;
+package test.sheep.expression.arithmetic;
 
 import org.junit.Test;
 import sheep.expression.arithmetic.Equal;
