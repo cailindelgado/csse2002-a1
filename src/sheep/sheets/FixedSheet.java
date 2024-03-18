@@ -69,7 +69,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      */
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column, input)) {
-            return UpdateResponse.fail("Sheet it view only.");
+            return UpdateResponse.fail("Sheet is view only.");
         }
         return UpdateResponse.success();
     }
