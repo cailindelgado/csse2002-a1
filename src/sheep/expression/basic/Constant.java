@@ -39,9 +39,10 @@ public class Constant extends Expression {
      * @param object Another object to compare against
      * @return If the given object is equal to this object
      */
+    @Override
     public boolean equals(Object object) {
+        //check if the object is a Constant instance
         if (object instanceof Constant constant) {
-            //Downcasting object as an instance of Constant, since above condition true
             return (constant.getValue() == getValue()) ? true : false;
         }
         return false;
@@ -53,7 +54,10 @@ public class Constant extends Expression {
      */
     @Override
     public int hashCode() {
-        return toString().hashCode();
+        //create a unique number using the value of the constant instance
+        int hash = (int) Math.pow((value() >>> 30),value());
+//        return toString().hashCode();
+        return hash;
     }
 
     /**
@@ -71,7 +75,7 @@ public class Constant extends Expression {
      */
     public Expression value(Map<String, Expression> state) {
         return this;
-    } //might be wrong
+    }
 
     /**
      * Evaluate the exopression to a numeric value

@@ -22,7 +22,7 @@ public abstract class Arithmetic extends Expression {
         this.operator = operator;
         if (arguments.length > 0) {
             this.arguments = arguments;
-        }
+        } else throw new IllegalArgumentException("arguments length is less than 0");
     }
 
     /**

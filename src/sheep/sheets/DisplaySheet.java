@@ -26,7 +26,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
         if ((rows > 0) && (columns > 0)){
             this.rows = rows;
             this.columns = columns;
-        }
+        } else this.rows = this.columns = 30;
         this.parser = parser;
         this.defaultExpression = defaultExpression;
     }
@@ -43,9 +43,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column)) {
-            return null;
         }
-        return null;
     }
 
     /**
@@ -74,9 +72,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement valueAt(int row, int column) {
         if (checker(row, column)) {
-            return null;
         }
-        return null;
     }
 
     /**
@@ -87,9 +83,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement formulaAt(int row, int column) {
         if (checker(row, column)) {
-            return null;
         }
-        return null;
     }
 
     /**

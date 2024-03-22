@@ -19,7 +19,7 @@ public class Reference extends Expression{
      * @param identifier An identifier of a cell or a built-in.
      */
     public Reference(String identifier) {
-        if (identifier != "" || identifier != null) {
+        if (identifier.equals("")) {
             this.identifier = identifier;
         }
     }
@@ -57,9 +57,23 @@ public class Reference extends Expression{
      */
    @Override
     public boolean equals(Object obj) {
-      if (obj instanceof Reference reference) {
-          return reference.getIdentifier().equals(identifier);
-      } else return false;
+       if (obj instanceof Reference reference) {
+           //if identifiers are the same length then continue
+           if (getIdentifier().length() == reference.getIdentifier().length()) {
+               for (int pos = 0; pos < getIdentifier().length(); pos++) {
+                   if (!(getIdentifier().charAt(pos) == reference.getIdentifier().charAt(pos))) {
+                       return false;
+                   }
+               }
+               return true;
+           }
+       }
+       return false;
+
+       // write your own equals method, not java's implemented one.
+//      if (obj instanceof Reference reference) {
+//          return reference.getIdentifier().equals(identifier);
+//      } else return false;
     }
 
     /**
@@ -67,7 +81,16 @@ public class Reference extends Expression{
      * @return An appropriate hashcode for this instance
      */
     @Override
-    public int hashCode() {return identifier.hashCode();}
+    public int hashCode() {
+        //write own hashcode method, not the one java has.
+//        return identifier.hashCode();
+        int hash = 0;
+        for (int pos = 0; pos < (identifier.length() - 1); pos++) {
+            hash += (int) (identifier.charAt(pos) * Math.pow(30, identifier.length() - 2));
+        }
+
+        return hash;
+    }
 
     /**
      * Dependencies of the reference expression
@@ -86,7 +109,9 @@ public class Reference extends Expression{
      * @throws TypeError If a type error occurs in the process of evaluation
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
-        return null;
+        if (state.get(identifier) == null) {
+            return this;
+        } else return state.get(identifier);
     }
 
     /**
@@ -95,7 +120,7 @@ public class Reference extends Expression{
      * @throws TypeError Will always be thrown by {@link Reference}
      */
     public long value() throws TypeError {
-        return 0;
+        throw new TypeError();
     }
 
     /**

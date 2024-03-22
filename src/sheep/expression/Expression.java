@@ -7,8 +7,6 @@ import java.util.Set;
  * Is the base type from which all values extend.
  */
 public abstract class Expression {
-    //reference is true when expression is a reference,
-    private boolean reference = false;
 
     /**
      * constructor method.
@@ -42,7 +40,7 @@ public abstract class Expression {
      * @return true if the expression is a reference
      */
     public boolean isReference() {
-        return reference;
+        return false;
     }
 
     /**

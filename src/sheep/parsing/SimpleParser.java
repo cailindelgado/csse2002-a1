@@ -27,12 +27,12 @@ public class SimpleParser implements Parser{
      */
     public Expression parse(String input) throws ParseException {
 
-        System.out.println(input);
-
+        //if the input is a empty string return an empty expression
         if (input.trim().equals("")) {
             return factory.createEmpty();
         }
 
+        //checker for if the given input contains any of the following
         if (input.contains("=")) {
             String[] inputBits = input.trim().split("=");
             Expression[] subBits = parseAssistant(inputBits);
@@ -42,6 +42,10 @@ public class SimpleParser implements Parser{
             String[] inputBits = input.trim().split("<");
             Expression[] subBits = parseAssistant(inputBits);
             return new Less(subBits);
+
+        } else if (input.contains("(")) {
+            String[] inputBits = input.trim().split("[()]");
+            parseAssistant(inputBits);
 
         }  else if (input.contains("+")) {
             String[] inputBits = input.trim().split("[+]"); //+ is a quantifier so [] required
@@ -58,15 +62,23 @@ public class SimpleParser implements Parser{
             Expression[] subBits = parseAssistant(inputBits);
             return new Times(subBits);
 
-        }
-
-        if (input.contains("/")) {
+        } else if (input.contains("/")) {
             String[] inputBits = input.trim().split("/");
             Expression[] subBits = parseAssistant(inputBits);
             return new Divide(subBits);
+
         }
 
-        return null;
+        /*
+       Any remaining expressions that 1) cannot be parsed as a number or arithmetic expression,
+       and 2) only contains alphabetic Character.isAlphabetic(int) and digit characters Character.isDigit(char),
+       should be treated as a reference.
+         */
+
+        if (!input.contains("9")) {
+            return null;
+        }
+
     }
 
     private Expression[] parseAssistant(String[] bits) throws ParseException {
