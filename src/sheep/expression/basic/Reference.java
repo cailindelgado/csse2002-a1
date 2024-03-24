@@ -19,9 +19,9 @@ public class Reference extends Expression{
      * @param identifier An identifier of a cell or a built-in.
      */
     public Reference(String identifier) {
-        if (identifier.equals("")) {
-            this.identifier = identifier;
-        }
+//        if (!identifier.equals("")) {
+        this.identifier = identifier;
+//        }
     }
 
     /**
