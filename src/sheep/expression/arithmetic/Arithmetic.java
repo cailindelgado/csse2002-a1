@@ -129,9 +129,9 @@ public abstract class Arithmetic extends Expression {
         StringBuilder result = new StringBuilder(); //String builder avoids waste of memory
         for (Expression arg : arguments) {
             if (arg instanceof Reference reference) {
-                result.append(reference.render()).append("+ "); //chained append to stop complaints
+                result.append(reference.render()).append(" ").append(operator).append(" ");
             } else if (arg instanceof Constant constant) {
-                result.append(constant.render()).append("+ ");
+                result.append(constant.render()).append(" ").append(operator).append(" ");
             }
         }
         return result.substring(0, result.length() - 2);

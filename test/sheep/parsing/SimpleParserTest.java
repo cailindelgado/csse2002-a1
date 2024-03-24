@@ -32,10 +32,8 @@ public class SimpleParserTest {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1=2");
         System.out.println(result.toString());
-//        assertEquals(new Equal(new Constant(1), new Constant(2)), result.toString());
 
     }
-
 
 }
 

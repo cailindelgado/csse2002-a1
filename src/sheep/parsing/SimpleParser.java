@@ -3,6 +3,8 @@ package sheep.parsing;
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
 import sheep.expression.arithmetic.*;
+import sheep.expression.basic.Constant;
+import sheep.expression.basic.Reference;
 
 /**
  * Parser of basic expressions and arithmetic expressions.
@@ -73,8 +75,12 @@ public class SimpleParser implements Parser{
        and 2) only contains alphabetic Character.isAlphabetic(int) and digit characters Character.isDigit(char),
        should be treated as a reference.
          */
-        return null;
 
+        try {
+            return new Constant(Long.parseLong(input.trim()));
+        } catch (NumberFormatException e) {
+            return new Reference(input.trim());
+        }
     }
 
     private Expression[] parseAssistant(String[] bits) throws ParseException {
