@@ -2,7 +2,7 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 
-public class Less extends Arithmetic{
+class Less extends Arithmetic{
 
     /**
      * construct a new less expression

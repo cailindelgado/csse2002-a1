@@ -2,7 +2,7 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 
-public class Divide extends Arithmetic{
+class Divide extends Arithmetic{
 
     /**
      * construct a new divide expression

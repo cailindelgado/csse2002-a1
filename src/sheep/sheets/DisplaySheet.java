@@ -5,7 +5,9 @@ import sheep.core.SheetView;
 import sheep.core.UpdateResponse;
 import sheep.core.ViewElement;
 import sheep.expression.Expression;
+import sheep.parsing.ParseException;
 import sheep.parsing.Parser;
+import sheep.parsing.SimpleParser;
 
 
 public class DisplaySheet implements SheetUpdate, SheetView {
@@ -43,7 +45,13 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column)) {
-        }
+            try {
+                parser.parse(input);
+                UpdateResponse.success();
+            } catch (ParseException e) {
+                UpdateResponse.fail("Unable to parse: " + input);
+            }
+        } return null;
     }
 
     /**
@@ -72,7 +80,11 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement valueAt(int row, int column) {
         if (checker(row, column)) {
-        }
+            if (UpdateResponse.success().isSuccess()) {
+                return new ViewElement(defaultExpression.render(),"White", "Black");
+            }
+            return new ViewElement(defaultExpression.toString(), "White", "Black");
+        } return null;
     }
 
     /**
@@ -84,6 +96,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
     public ViewElement formulaAt(int row, int column) {
         if (checker(row, column)) {
         }
+        return null;
     }
 
     /**

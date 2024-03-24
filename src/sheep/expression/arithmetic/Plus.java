@@ -5,7 +5,7 @@ import sheep.expression.Expression;
 /**
  * A plus operation with the operator name +
  */
-public class Plus extends Arithmetic {
+class Plus extends Arithmetic {
 
     /**
      * construct a new plus expression

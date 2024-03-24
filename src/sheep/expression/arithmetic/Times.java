@@ -2,7 +2,7 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 
-public class Times extends Arithmetic {
+class Times extends Arithmetic {
 
     /**
      * construct a new times expression

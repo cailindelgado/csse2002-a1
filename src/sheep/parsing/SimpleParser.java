@@ -36,37 +36,36 @@ public class SimpleParser implements Parser{
         if (input.contains("=")) {
             String[] inputBits = input.trim().split("=");
             Expression[] subBits = parseAssistant(inputBits);
-            return new Equal(subBits);
+            return Arithmetic.equal(subBits);
 
         } else if (input.contains("<")) {
             String[] inputBits = input.trim().split("<");
             Expression[] subBits = parseAssistant(inputBits);
-            return new Less(subBits);
+            return Arithmetic.less(subBits);
 
-        } else if (input.contains("(")) {
+        } else if (input.contains("(") && input.contains(")")) {
             String[] inputBits = input.trim().split("[()]");
             parseAssistant(inputBits);
 
         }  else if (input.contains("+")) {
             String[] inputBits = input.trim().split("[+]"); //+ is a quantifier so [] required
             Expression[] subBits = parseAssistant(inputBits);
-            return new Plus(subBits);
+            return Arithmetic.plus(subBits);
 
         } else if (input.contains("-")) {
             String[] inputBits = input.trim().split("-");
             Expression[] subBits = parseAssistant(inputBits);
-            return new Minus(subBits);
+            return Arithmetic.minus(subBits);
 
         } else if (input.contains("*")) {
             String[] inputBits = input.trim().split("[*]"); //* is a quantifier so [] required
             Expression[] subBits = parseAssistant(inputBits);
-            return new Times(subBits);
+            return Arithmetic.times(subBits);
 
         } else if (input.contains("/")) {
             String[] inputBits = input.trim().split("/");
             Expression[] subBits = parseAssistant(inputBits);
-            return new Divide(subBits);
-
+            return Arithmetic.divide(subBits);
         }
 
         /*
@@ -74,10 +73,7 @@ public class SimpleParser implements Parser{
        and 2) only contains alphabetic Character.isAlphabetic(int) and digit characters Character.isDigit(char),
        should be treated as a reference.
          */
-
-        if (!input.contains("9")) {
-            return null;
-        }
+        return null;
 
     }
 

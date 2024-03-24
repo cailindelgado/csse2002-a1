@@ -23,7 +23,6 @@ public class Nothing extends Expression{
      */
     public Set<String> dependencies() {
         return Collections.emptySet();
-
     }
 
     /**
