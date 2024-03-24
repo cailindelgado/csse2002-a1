@@ -45,9 +45,12 @@ public class SimpleParser implements Parser{
             Expression[] subBits = parseAssistant(inputBits);
             return Arithmetic.less(subBits);
 
-        } else if (input.contains("(") && input.contains(")")) {
-            String[] inputBits = input.trim().split("[()]");
-            parseAssistant(inputBits);
+//        } else if (input.contains("(") && input.contains(")")) {
+            /*
+            returns null because does nothing with the inputbits once everything has been parsed
+             */
+//            String[] inputBits = input.trim().split("[()]");
+//            parseAssistant(inputBits);
 
         }  else if (input.contains("+")) {
             String[] inputBits = input.trim().split("[+]"); //+ is a quantifier so [] required
