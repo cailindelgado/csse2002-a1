@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 import sheep.expression.CoreFactory;
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
-import sheep.expression.basic.Constant;
 
 public class SimpleParserTest {
 

@@ -55,19 +55,24 @@ public class CoreFactory implements ExpressionFactory {
 			throw new InvalidExpression("Operator name unknown");
 		}
 
-		//checks if args is an array of Expressions[]
-		if (args instanceof Expression[] expressions) {
-			//difference operation performed based on the operator name passed in
-			switch (name.trim()) {
-				case "+" -> plus(expressions);
-				case "-" -> minus(expressions);
-				case "*" -> times(expressions);
-				case "/" -> divide(expressions);
-				case "<" -> less(expressions);
-				case "=" -> equal(expressions);
-			}
+		Expression[] expressions = new Expression[args.length];
+
+		for (int pos = 0; pos < args.length; pos++) {
+			if ((args[pos] instanceof Expression expression)) {
+				expressions[pos] = expression;
+			} else throw new InvalidExpression("args not of type Expression[]");
 		}
-		throw new InvalidExpression("args not of type Expression[]");
+
+		//difference operation performed based on the operator name passed in
+		switch (name.trim()) {
+			case "+": return plus(expressions);
+			case "-": return minus(expressions);
+			case "*": return times(expressions);
+			case "/": return divide(expressions);
+			case "<": return less(expressions);
+			case "=": return equal(expressions);
+			default: return null;
+		}
 	}
 
 }
