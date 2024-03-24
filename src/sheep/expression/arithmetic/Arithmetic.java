@@ -134,7 +134,7 @@ public abstract class Arithmetic extends Expression {
                 result.append(constant.render()).append(" ").append(operator).append(" ");
             }
         }
-        return result.substring(0, result.length() - 2);
+        return result.substring(0, result.length() - 3);
     }
 
     /**
