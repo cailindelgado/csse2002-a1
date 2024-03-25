@@ -21,14 +21,12 @@ public class SimpleParserTest {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("");
         assertEquals(factory.createEmpty().toString(), result.toString());
-
     }
 
     @Test public void testParseEqualExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1=2");
         System.out.println(result.toString());
-
     }
 
     @Test public void testParsePlusExpression() throws ParseException {
@@ -56,7 +54,6 @@ public class SimpleParserTest {
         assertEquals("1 / 3", result.toString());
         assertEquals("1 / 3 / 4 / 5", result2.toString());
     }
-
 
     @Test public void testParseTimesExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
@@ -94,9 +91,7 @@ public class SimpleParserTest {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("3 2  20 - 2/15 +12* 100");
         Expression result2 = parser.parse("3 2  20 - 2/15 +12* 100");
-
     }
-
 }
 
 
