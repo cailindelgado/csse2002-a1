@@ -2,6 +2,7 @@ package sheep.parsing;
 
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
+import sheep.expression.InvalidExpression;
 import sheep.expression.arithmetic.*;
 import sheep.expression.basic.Constant;
 import sheep.expression.basic.Reference;
@@ -34,6 +35,10 @@ public class SimpleParser implements Parser{
             return factory.createEmpty();
         }
 
+        if (!checkInvalid(input)) {
+            throw new ParseException();
+        }
+
         //checker for if the given input contains any of the following
         if (input.contains("=")) {
             String[] inputBits = input.trim().split("=");
@@ -57,7 +62,7 @@ public class SimpleParser implements Parser{
             Expression[] subBits = parseAssistant(inputBits);
             return Arithmetic.plus(subBits);
 
-        } else if (input.contains("-")) {
+        } else if (input.contains("-") && !negCheck(input)) {
             String[] inputBits = input.trim().split("-");
             Expression[] subBits = parseAssistant(inputBits);
             return Arithmetic.minus(subBits);
@@ -86,11 +91,54 @@ public class SimpleParser implements Parser{
         }
     }
 
+    /**
+     *
+     * @param bits
+     * @return
+     * @throws ParseException
+     */
     private Expression[] parseAssistant(String[] bits) throws ParseException {
         Expression[] result = new Expression[bits.length];
         for (int indx = 0; indx < bits.length; indx++) {
             result[indx] = parse(bits[indx]);
         }
         return result;
+    }
+
+
+    /**
+     * Checks if the given input contains a negative value
+     * @param input A string input
+     * @return a true if the input is a negative number, false otherwise
+     */
+    private boolean negCheck(String input) {
+        String[] bits = input.trim().split("-");
+
+        //if the input is just a constant i.e. -34567 the very first char is '-' so it is negative
+        if (input.trim().charAt(0) == '-') {
+            return true;
+        }
+
+        //iterate over the broken up bits of input to see if the chain can continue
+        for (String bit : bits) {
+            if (bit.contains("*") || bit.contains("/")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param input
+     * @return
+     * @throws ParseException
+     */
+    private boolean checkInvalid(String input) {
+        for (int pos = 0; pos < input.length(); pos++) {
+            if (Character.isLetterOrDigit(input.charAt(pos))) {
+                return true;
+            }
+        } return false;
     }
 }

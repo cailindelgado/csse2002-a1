@@ -35,8 +35,10 @@ public class SimpleParserTest {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 +3");
         Expression result2 = parser.parse("1+ 3 + 4 + 5");
+        Expression result3 = parser.parse("1+3+4+5");
         assertEquals("1 + 3", result.toString());
         assertEquals("1 + 3 + 4 + 5", result2.toString());
+        assertEquals("1 + 3 + 4 + 5", result3.toString());
     }
 
     @Test public void testParseMinusExpression() throws ParseException {
@@ -73,6 +75,25 @@ public class SimpleParserTest {
         System.out.println(result.toString());
         System.out.println(result2.toString());
         System.out.println(result3.toString());
+
+    }
+
+    @Test public void testParseNegs() throws ParseException {
+        Parser parser = new SimpleParser(factory);
+        Expression result = parser.parse("-2");
+        Expression result2 = parser.parse("4 --3");
+        Expression result3 = parser.parse("4 + -3");
+        Expression result4 = parser.parse("4 * -3");
+        Expression result5 = parser.parse("4 = -3");
+        Expression result6 = parser.parse("4 / -3");
+        Expression result7 = parser.parse("-A0");           // Should it be -A0 as a reference or a type error?
+        Expression result8 = parser.parse("-Hell*o");       // same argument as above
+    }
+
+    @Test public void testParseGrdScp() throws ParseException {
+        Parser parser = new SimpleParser(factory);
+        Expression result = parser.parse("3 2  20 - 2/15 +12* 100");
+        Expression result2 = parser.parse("3 2  20 - 2/15 +12* 100");
 
     }
 
