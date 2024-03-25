@@ -8,9 +8,12 @@ import sheep.expression.basic.Reference;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ */
 public abstract class Arithmetic extends Expression {
-    final private String operator;
-    private Expression[] arguments;
+    private final String operator;
+    private final Expression[] arguments;
 
     /**
      * Construct a new expression
@@ -22,7 +25,9 @@ public abstract class Arithmetic extends Expression {
         this.operator = operator;
         if (arguments.length > 0) {
             this.arguments = arguments;
-        } else throw new IllegalArgumentException("arguments length is less than 0");
+        } else {
+            throw new IllegalArgumentException("arguments length is less than 0");
+        }
     }
 
     /**
@@ -125,7 +130,7 @@ public abstract class Arithmetic extends Expression {
      * The string representation of the expression
      * @return the string representation of the expression
      */
-    public String render(){
+    public String render() {
         StringBuilder result = new StringBuilder(); //String builder avoids waste of memory
         for (Expression arg : arguments) {
             if (arg instanceof Reference reference) {
@@ -141,6 +146,8 @@ public abstract class Arithmetic extends Expression {
      * Returns the exact same thing as render()
      * @return the string representation of the expression.
      */
-    public String toString() {return render();}
+    public String toString() {
+        return render();
+    }
 
 }

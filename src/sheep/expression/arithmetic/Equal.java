@@ -2,7 +2,7 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 
-class Equal extends Arithmetic{
+class Equal extends Arithmetic {
 
     /**
      * construct a new equal expression

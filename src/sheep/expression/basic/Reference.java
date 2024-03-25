@@ -10,70 +10,68 @@ import java.util.Set;
 /**
  * A reference to a given identifier
  */
-public class Reference extends Expression{
+public class Reference extends Expression {
 
-    private String identifier;
+    private final String identifier;
 
     /**
      * construct a new reference to an identifier
      * @param identifier An identifier of a cell or a built-in.
      */
     public Reference(String identifier) {
-//        if (!identifier.equals("")) {
         this.identifier = identifier;
-//        }
     }
 
     /**
      * Returns the identifier of the reference
      * @return The identifier of this reference
      */
-   public String getIdentifier() {
+    public String getIdentifier() {
         return identifier;
-   }
+    }
 
     /**
      * String representation of the reference
      * @return The string representation of the expression
      */
     @Override
-   public String toString() {
-       return "REFERENCE("+ identifier + ")";
-   }
+    public String toString() {
+        return "REFERENCE(" + identifier + ")";
+    }
 
     /**
      * Returns whether the expression is a reference
      * @return true
      */
     @Override
-   public boolean isReference() {
+    public boolean isReference() {
         return true;
-   }
+    }
 
     /**
      * If two instances of reference are equal to each other returns true
      * @param obj another instance to compare against
      * @return true if the other object is a reference with the same identifier
      */
-   @Override
+    @Override
     public boolean equals(Object obj) {
-       if (obj instanceof Reference reference) {
-           //if identifiers are the same length then continue
-           if (getIdentifier().length() == reference.getIdentifier().length()) {
-               for (int pos = 0; pos < getIdentifier().length(); pos++) {
-                   if (!(getIdentifier().charAt(pos) == reference.getIdentifier().charAt(pos))) {
-                       return false;
-                   }
-               }
-               return true;
-           }
-       }
-       return false;
+        if (obj instanceof Reference reference) {
+            //if identifiers are the same length then continue
+            if (getIdentifier().length() == reference.getIdentifier().length()) {
+                for (int pos = 0; pos < getIdentifier().length(); pos++) {
+                    if (!(getIdentifier().charAt(pos) == reference.getIdentifier().charAt(pos))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
 
-       // write your own equals method, not java's implemented one.
-//      if (obj instanceof Reference reference) {
-//          return reference.getIdentifier().equals(identifier);
-//      } else return false;
+        // write your own equals method, not java's implemented one.
+        //      if (obj instanceof Reference reference) {
+        //          return reference.getIdentifier().equals(identifier);
+        //      } else return false;
     }
 
     /**
@@ -83,7 +81,7 @@ public class Reference extends Expression{
     @Override
     public int hashCode() {
         //write own hashcode method, not the one java has.
-//        return identifier.hashCode();
+        //        return identifier.hashCode();
         int hash = 0;
         for (int pos = 0; pos < (identifier.length() - 1); pos++) {
             hash += (int) (identifier.charAt(pos) * Math.pow(30, identifier.length() - 2));
@@ -111,7 +109,9 @@ public class Reference extends Expression{
     public Expression value(Map<String, Expression> state) throws TypeError {
         if (state.get(identifier) == null) {
             return this;
-        } else return state.get(identifier);
+        } else {
+            return state.get(identifier);
+        }
     }
 
     /**
@@ -127,5 +127,7 @@ public class Reference extends Expression{
      * The string representation of the expression
      * @return the string representation of the expression
      */
-    public String render() {return identifier;}
+    public String render() {
+        return identifier;
+    }
 }

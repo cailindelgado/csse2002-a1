@@ -9,8 +9,8 @@ import sheep.expression.basic.Reference;
 /**
  * Parser of basic expressions and arithmetic expressions.
  */
-public class SimpleParser implements Parser{
-    private ExpressionFactory factory;
+public class SimpleParser implements Parser {
+    private final ExpressionFactory factory;
 
     /**
      * Construct a new parser,
@@ -28,7 +28,7 @@ public class SimpleParser implements Parser{
      */
     public Expression parse(String input) throws ParseException {
         //if the input is a empty string return an empty expression
-        if (input.trim().equals("")) {
+        if (input.trim().isEmpty()) {
             return factory.createEmpty();
         }
 
@@ -85,11 +85,12 @@ public class SimpleParser implements Parser{
     }
 
     /**
-     * This helps the parse method by creating an array of expressions, and re-parsing each part
+     * This helps the parse method by creating an array of expressions,
+     * and putting each item of bits back into the parse method, to categorize it
      * bits.
-     * @param bits
-     * @return
-     * @throws ParseException
+     * @param bits A broken up array depending on what the parse method deems appropriate
+     * @return the resulting array of expressions
+     * @throws ParseException Is thrown by the parse method when an invalid string is encountered
      */
     private Expression[] parseAssistant(String[] bits) throws ParseException {
         Expression[] result = new Expression[bits.length];
@@ -132,6 +133,7 @@ public class SimpleParser implements Parser{
             if (Character.isLetterOrDigit(input.charAt(pos))) {
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 }

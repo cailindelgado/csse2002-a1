@@ -20,7 +20,7 @@ class Plus extends Arithmetic {
      * @param arguments A list of numbers to perform the operation upon
      * @return The result of plus
      */
-       protected long perform(long[] arguments) {
+    protected long perform(long[] arguments) {
         long result = 0;
         for (long number : arguments) {
             result += number;

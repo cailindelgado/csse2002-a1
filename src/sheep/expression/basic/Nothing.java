@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * An empty expression
  */
-public class Nothing extends Expression{
+public class Nothing extends Expression {
 
     /**
      * Constructor method
@@ -31,9 +31,9 @@ public class Nothing extends Expression{
      * @return itself
      * @throws TypeError If a type error occurs in the process of evaluation
      */
-   public Expression value(Map<String, Expression> state) throws TypeError {
+    public Expression value(Map<String, Expression> state) throws TypeError {
         return this;
-   }
+    }
 
     /**
      * Evaluate the expression to a numeric value

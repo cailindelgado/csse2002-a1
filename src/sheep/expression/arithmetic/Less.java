@@ -2,7 +2,7 @@ package sheep.expression.arithmetic;
 
 import sheep.expression.Expression;
 
-class Less extends Arithmetic{
+class Less extends Arithmetic {
 
     /**
      * construct a new less expression
@@ -18,13 +18,17 @@ class Less extends Arithmetic{
      * @return 1 if all arguments are equal, 0 otherwise
      */
     protected long perform(long[] arguments) {
-       int counter = -1; //starts at -1 as final counter val will be 1 less than the array length
+        int counter = -1; //starts at -1 as final counter val will be 1 less than the array length
         for (int index = 0; index < arguments.length; index++) {
-            if ((index + 1) > arguments.length) {break;}
+            if ((index + 1) > arguments.length) {
+                break;
+            }
 
-            if ((arguments[index] < arguments[index + 1])) {counter++;}
+            if ((arguments[index] < arguments[index + 1])) {
+                counter++;
+            }
         }
-            return (counter == arguments.length) ? 1 : 0;
+        return (counter == arguments.length) ? 1 : 0;
     }
 
 }

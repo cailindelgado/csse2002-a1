@@ -9,13 +9,16 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ */
 public class Sheet implements SheetView, SheetUpdate {
 
-    private Parser parser;
-    private Map<String, Expression> builtins;
-    private Expression defaultExpression;
-    private int rows;
-    private int columns;
+    private final Parser parser;
+    private final Map<String, Expression> builtins;
+    private final Expression defaultExpression;
+    private final int rows;
+    private final int columns;
 
 
     /**
@@ -62,7 +65,7 @@ public class Sheet implements SheetView, SheetUpdate {
      * The value to render at this location.
      * @param row The row index of the cell.
      * @param column The column index of the cell.
-     * @return
+     * @return ViewElement
      */
     public ViewElement valueAt(int row, int column) {
         return null;
@@ -82,52 +85,52 @@ public class Sheet implements SheetView, SheetUpdate {
         return null;
     }
 
-   /**
-     * Attempt to update the cell at row and column within the sheet with the given input.
-     * @param row The row index to update.
-     * @param column The column index to update.
-     * @param input The value as a string to replace within the sheet.
-     * @return Information about the status of performing the update
-     */
-   public UpdateResponse update(int row, int column, String input) {
-       return null;
-    }
-
-   /**
-     * The formula expression currently stores at the location in the spreadsheet
-     * @param location A cell location within the spreadsheet
-     * @return The formula expression at the given cell location
-     * @require location is within the bounds (row/column) of the spreadsheet
-     */
-   public Expression formulaAt(CellLocation location) {
+    /**
+      * Attempt to update the cell at row and column within the sheet with the given input.
+      * @param row The row index to update.
+      * @param column The column index to update.
+      * @param input The value as a string to replace within the sheet.
+      * @return Information about the status of performing the update
+      */
+    public UpdateResponse update(int row, int column, String input) {
         return null;
-    }
+     }
 
-   /**
-     *
-     * @param location
-     * @return
-     */
-   public Expression valueAt(CellLocation location) {
-       return null;
-    }
+    /**
+      * The formula expression currently stores at the location in the spreadsheet
+      * @param location A cell location within the spreadsheet
+      * @return The formula expression at the given cell location
+      * @require location is within the bounds (row/column) of the spreadsheet
+      */
+    public Expression formulaAt(CellLocation location) {
+         return null;
+     }
 
-   /**
-     *
-     * @param location
-     * @return
-     */
-   public Set<Collection> usedBy(CellLocation location) {
-       return null;
-    }
+    /**
+      *
+      * @param location
+      * @return
+      */
+    public Expression valueAt(CellLocation location) {
+        return null;
+     }
 
-   /**
-     *
-     * @param location
-     * @param cell
-     * @throws TypeError
-     */
-   public void update(CellLocation location, Expression cell) throws TypeError {
-      throw new TypeError();
-   }
+    /**
+      *
+      * @param location
+      * @return
+      */
+    public Set<Collection> usedBy(CellLocation location) {
+        return null;
+     }
+
+    /**
+      *
+      * @param location
+      * @param cell
+      * @throws TypeError
+      */
+    public void update(CellLocation location, Expression cell) throws TypeError {
+        throw new TypeError();
+    }
 }

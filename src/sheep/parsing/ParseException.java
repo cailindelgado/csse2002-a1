@@ -8,7 +8,9 @@ public class ParseException extends Exception {
     /**
      * Constructor for when no message or base passed in
      */
-    public ParseException() {super();}
+    public ParseException() {
+        super();
+    }
 
     /**
      * Construct a new exception with a description of the exception

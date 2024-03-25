@@ -2,6 +2,9 @@ package sheep.parsing;
 
 import sheep.expression.Expression;
 
+/**
+ *
+ */
 public interface Parser {
 
     /**

@@ -8,8 +8,8 @@ import java.util.Optional;
  * column and coordinate system.
  */
 public class CellLocation {
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     /**
      * Construct a new cell location at the given row and column
@@ -75,10 +75,18 @@ public class CellLocation {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     public int hashCode() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return String.valueOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(column)) + row;
     }

@@ -6,8 +6,11 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ */
 public class Constant extends Expression {
-    private long number;
+    private final long number;
 
     /**
      * construct a new constant to represent the given number
@@ -31,7 +34,7 @@ public class Constant extends Expression {
      */
     @Override
     public String toString() {
-        return "CONSTANT(" + (int)number + ")";
+        return "CONSTANT(" + (int) number + ")";
     }
 
     /**
@@ -43,7 +46,7 @@ public class Constant extends Expression {
     public boolean equals(Object object) {
         //check if the object is a Constant instance
         if (object instanceof Constant constant) {
-            return (constant.getValue() == getValue()) ? true : false;
+            return constant.getValue() == getValue();
         }
         return false;
     }
@@ -55,9 +58,8 @@ public class Constant extends Expression {
     @Override
     public int hashCode() {
         //create a unique number using the value of the constant instance
-        int hash = (int) Math.pow((value() >>> 30),value());
-//        return toString().hashCode();
-        return hash;
+        // return toString().hashCode();
+        return (int) Math.pow((value() >>> 30), value());
     }
 
     /**

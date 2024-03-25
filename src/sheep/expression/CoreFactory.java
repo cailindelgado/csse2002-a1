@@ -7,73 +7,80 @@ import sheep.expression.basic.Reference;
 
 import static sheep.expression.arithmetic.Arithmetic.*;
 
+/**
+ * Uses the ExpressionFacroty interfact to create various expressions.
+ */
 public class CoreFactory implements ExpressionFactory {
 
-	/**
-	 * An instance of Reference that stores the given identifier
-	 * @param identifier A reference to either a cell or a built-in
-	 * @return An instance of Reference that stores the given identifier
-	 * @requires identifier != ""
-	 */
-	public Expression createReference(String identifier) {
-		if (!identifier.isEmpty()) {
-			return new Reference(identifier);
-		}
-		return null;
-	}
+    /**
+     * An instance of Reference that stores the given identifier
+     *
+     * @param identifier A reference to either a cell or a built-in
+     * @return An instance of Reference that stores the given identifier
+     * @requires identifier != ""
+     */
+    public Expression createReference(String identifier) {
+        if (!identifier.isEmpty()) {
+            return new Reference(identifier);
+        }
+        return null;
+    }
 
-	/**
-	 * An instance of Constant that stores the given value
-	 * @param value A constant long value of the expression
-	 * @return An instance of {@link Constant} that stores the given value
-	 */
-	public Expression createConstant(long value) {
-		return new Constant(value);
-	}
+    /**
+     * An instance of Constant that stores the given value
+     *
+     * @param value A constant long value of the expression
+     * @return An instance of {@link Constant} that stores the given value
+     */
+    public Expression createConstant(long value) {
+        return new Constant(value);
+    }
 
-	/**
-	 * An instance of {@link Nothing}
-	 * @return An instance of {@link Nothing}
-	 */
-	public Expression createEmpty() {
-		return new Nothing();
-	}
+    /**
+     * An instance of {@link Nothing}
+     *
+     * @return An instance of {@link Nothing}
+     */
+    public Expression createEmpty() {
+        return new Nothing();
+    }
 
-	/**
-	 * An instance of {@link Arithmetic} based on the given operator name
-	 * @param name An identifier for the operator, e.g. +, -, *
-	 * @param args A list of {@link Expression} instances as arguments to the {@link Arithmetic}
-	 * instance
-	 * @return An appropriate operator expression
-	 * @throws InvalidExpression If the operator name is unknown or if any of the given
-	 * {@link Object} arguments are not subclasses of {@link Exception} or if there are no argument
-	 * given
-	 */
-	public Expression createOperator(String name, Object[] args) throws InvalidExpression {
-		//check if name is in the string in order to continue
-		if (!("+-*/<=".contains(name))) {
-			throw new InvalidExpression("Operator name unknown");
-		}
+    /**
+     * An instance of {@link Arithmetic} based on the given operator name
+     *
+     * @param name An identifier for the operator, e.g. +, -, *
+     * @param args A list of {@link Expression} instances as arguments to the {@link Arithmetic}
+     *             instance
+     * @return An appropriate operator expression
+     * @throws InvalidExpression If the operator name is unknown or if any of the given
+     *                           {@link Object} arguments are not subclasses of {@link Exception} or if there are no argument
+     *                           given
+     */
+    public Expression createOperator(String name, Object[] args) throws InvalidExpression {
+        //check if name is in the string in order to continue
+        if (!("+-*/<=".contains(name))) {
+            throw new InvalidExpression("Operator name unknown");
+        }
 
-		Expression[] expressions = new Expression[args.length];
+        Expression[] expressions = new Expression[args.length];
 
-		for (int pos = 0; pos < args.length; pos++) {
-			if ((args[pos] instanceof Expression expression)) {
-				expressions[pos] = expression;
-			} else throw new InvalidExpression("args not of type Expression[]");
-		}
+        for (int pos = 0; pos < args.length; pos++) {
+            if ((args[pos] instanceof Expression expression)) {
+                expressions[pos] = expression;
+            } else throw new InvalidExpression("args not of type Expression[]");
+        }
 
-		//difference operation performed based on the operator name passed in
-		switch (name.trim()) {
-			case "+": return plus(expressions);
-			case "-": return minus(expressions);
-			case "*": return times(expressions);
-			case "/": return divide(expressions);
-			case "<": return less(expressions);
-			case "=": return equal(expressions);
-			default: return null;
-		}
-	}
+        //difference operation performed based on the operator name passed in
+        return switch (name.trim()) {
+            case "+" -> plus(expressions);
+            case "-" -> minus(expressions);
+            case "*" -> times(expressions);
+            case "/" -> divide(expressions);
+            case "<" -> less(expressions);
+            case "=" -> equal(expressions);
+            default -> null;
+        };
+    }
 
 }
 
