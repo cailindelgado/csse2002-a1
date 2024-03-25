@@ -23,15 +23,15 @@ public class Main {
      */
     public static void main(String[] args) throws FunException {
         // Stage 0: Completion of core and FixedSheet.
-    	  FixedSheet simple = new FixedSheet();
-          render(simple, simple);
+//    	  FixedSheet simple = new FixedSheet();
+//          render(simple, simple);
 
 //         Stage 1: Completion of constant expressions and DisplaySheet.
-//        ExpressionFactory factory = new CoreFactory();
-//        Parser parser = new SimpleParser(factory);
+        ExpressionFactory factory = new CoreFactory();
+        Parser parser = new SimpleParser(factory);
 //
-//        DisplaySheet sheet = new DisplaySheet(parser, factory.createEmpty(), 20, 10);
-//        render(sheet, sheet);
+        DisplaySheet sheet = new DisplaySheet(parser, factory.createEmpty(), 20, 10);
+        render(sheet, sheet);
 
 //         Stage 1a: Pre-populate sheets (just for fun).
 //        new FibonacciConstants(20).draw(sheet);
