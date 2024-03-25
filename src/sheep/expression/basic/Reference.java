@@ -41,7 +41,7 @@ public class Reference extends Expression {
 
     /**
      * Returns whether the expression is a reference
-     * @return true
+     * @return always returns true
      */
     @Override
     public boolean isReference() {

@@ -67,7 +67,9 @@ public class CoreFactory implements ExpressionFactory {
         for (int pos = 0; pos < args.length; pos++) {
             if ((args[pos] instanceof Expression expression)) {
                 expressions[pos] = expression;
-            } else throw new InvalidExpression("args not of type Expression[]");
+            } else {
+                throw new InvalidExpression("args not of type Expression[]");
+            }
         }
 
         //difference operation performed based on the operator name passed in
