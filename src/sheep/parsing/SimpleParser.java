@@ -2,7 +2,6 @@ package sheep.parsing;
 
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
-import sheep.expression.InvalidExpression;
 import sheep.expression.arithmetic.*;
 import sheep.expression.basic.Constant;
 import sheep.expression.basic.Reference;
@@ -12,7 +11,6 @@ import sheep.expression.basic.Reference;
  */
 public class SimpleParser implements Parser{
     private ExpressionFactory factory;
-
 
     /**
      * Construct a new parser,
@@ -29,12 +27,12 @@ public class SimpleParser implements Parser{
      * @throws ParseException If the string is not recognisable as an expression.
      */
     public Expression parse(String input) throws ParseException {
-
         //if the input is a empty string return an empty expression
         if (input.trim().equals("")) {
             return factory.createEmpty();
         }
 
+        //check if input is valid
         if (!checkInvalid(input)) {
             throw new ParseException();
         }
@@ -78,12 +76,7 @@ public class SimpleParser implements Parser{
             return Arithmetic.divide(subBits);
         }
 
-        /*
-       Any remaining expressions that 1) cannot be parsed as a number or arithmetic expression,
-       and 2) only contains alphabetic Character.isAlphabetic(int) and digit characters Character.isDigit(char),
-       should be treated as a reference.
-         */
-
+        //try to turn the remaining input into a constant, if it fails turn it into a reference
         try {
             return new Constant(Long.parseLong(input.trim()));
         } catch (NumberFormatException e) {
@@ -92,7 +85,8 @@ public class SimpleParser implements Parser{
     }
 
     /**
-     *
+     * This helps the parse method by creating an array of expressions, and re-parsing each part
+     * bits.
      * @param bits
      * @return
      * @throws ParseException
@@ -129,10 +123,9 @@ public class SimpleParser implements Parser{
     }
 
     /**
-     *
-     * @param input
-     * @return
-     * @throws ParseException
+     * Checks whether the string input is valid
+     * @param input a String input of an expression
+     * @return true if the input is a valid expression, false otherwise.
      */
     private boolean checkInvalid(String input) {
         for (int pos = 0; pos < input.length(); pos++) {
