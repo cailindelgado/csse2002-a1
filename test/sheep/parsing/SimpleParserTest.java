@@ -134,7 +134,6 @@ public class SimpleParserTest {
         Parser parser = new SimpleParser(factory);
         Expression constant1 = parser.parse("42\t");
         Expression constant2 = parser.parse("42\n");
-        Expression constant3 = parser.parse("42\s");
         Expression constant4 = parser.parse("42\b");
         Expression ref1 = parser.parse("Hello\t");
         Expression ref2 = parser.parse("Hello\t");

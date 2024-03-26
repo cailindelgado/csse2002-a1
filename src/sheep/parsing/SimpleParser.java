@@ -12,6 +12,7 @@ public class SimpleParser implements Parser {
 
     /**
      * Construct a new parser,
+     *
      * @param factory Factory used to construct parsed expressions
      */
     public SimpleParser(ExpressionFactory factory) {
@@ -20,6 +21,7 @@ public class SimpleParser implements Parser {
 
     /**
      * Attempt to parse a String expression into an expression.
+     *
      * @param input A string to attempt to parse
      * @return The result of parsing the expression
      * @throws ParseException If the string is not recognisable as an expression.
@@ -29,6 +31,8 @@ public class SimpleParser implements Parser {
         if (input.trim().isEmpty()) {
             return factory.createEmpty();
         }
+
+        input = input.replaceAll("[\t\n\r\f]", " ");
 
         //check if input is valid
         if (!checkInvalid(input)) {
@@ -42,7 +46,7 @@ public class SimpleParser implements Parser {
         } else if (input.contains("<")) {
             return parseOutput('<', input);
 
-        }  else if (input.contains("+")) {
+        } else if (input.contains("+")) {
             return parseOutput('+', input);
 
         } else if (input.contains("-") && !negCheck(input)) {
@@ -67,6 +71,7 @@ public class SimpleParser implements Parser {
      * This helps the parse method by creating an array of expressions,
      * and putting each item of bits back into the parse method, to categorize it
      * bits.
+     *
      * @param bits A broken up array depending on what the parse method deems appropriate
      * @return the resulting array of expressions
      * @throws ParseException Is thrown by the parse method when an invalid string is encountered
@@ -81,6 +86,7 @@ public class SimpleParser implements Parser {
 
     /**
      * Checks if the given input contains a negative value
+     *
      * @param input A string input
      * @return a true if the input is a negative number, false otherwise
      */
@@ -103,6 +109,7 @@ public class SimpleParser implements Parser {
 
     /**
      * Checks whether the string input is valid
+     *
      * @param input a String input of an expression
      * @return true if the input is a valid expression, false otherwise.
      */
@@ -120,12 +127,13 @@ public class SimpleParser implements Parser {
     /**
      * Handles breaking the input up based on a given operator name, and creates new operators
      * which match the given name
-     * @param name The operator
+     *
+     * @param name  The operator
      * @param input is the operator that the method should know to use when splitting up the input
      *              and creating a new operator, this is of type char
      * @return returns an appropriate operator class containing an array of expressions
      * @throws ParseException When the createOperator method in
-     * {@link sheep.expression.CoreFactory} throws an invalid expression
+     *                        {@link sheep.expression.CoreFactory} throws an invalid expression
      */
     private Expression parseOutput(char name, String input) throws ParseException {
         String[] inputBits = input.trim().split("[" + name + "]");
