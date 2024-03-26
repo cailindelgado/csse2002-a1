@@ -128,7 +128,7 @@ public class SimpleParser implements Parser {
      * {@link sheep.expression.CoreFactory} throws an invalid expression
      */
     private Expression parseOutput(char name, String input) throws ParseException {
-        String[] inputBits = input.trim().split("" + name);
+        String[] inputBits = input.trim().split("[" + name + "]");
         Expression[] subBits = parseAssistant(inputBits);
 
         try {
