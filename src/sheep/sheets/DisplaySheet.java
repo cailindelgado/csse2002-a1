@@ -54,7 +54,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column)) {
             try {
-                parser.parse(input);
+                sheet[row][column] = parser.parse(input);
                 return UpdateResponse.success();
             } catch (ParseException e) {
                 return UpdateResponse.fail("Unable to parse: " + input);
