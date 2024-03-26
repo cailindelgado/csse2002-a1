@@ -27,8 +27,8 @@ public class Main {
 //          render(simple, simple);
 
 //         Stage 1: Completion of constant expressions and DisplaySheet.
-//        ExpressionFactory factory = new CoreFactory();
-//        Parser parser = new SimpleParser(factory);
+        ExpressionFactory factory = new CoreFactory();
+        Parser parser = new SimpleParser(factory);
 
 //        DisplaySheet sheet = new DisplaySheet(parser, factory.createEmpty(), 20, 10);
 //        render(sheet, sheet);
