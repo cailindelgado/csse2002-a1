@@ -139,9 +139,9 @@ public class SimpleParser implements Parser {
     }
 
 
-    /*
-    <...ator: + [(Operator: [- [(Operator:  [(Constant: 3), (Constant: 2), (Constant: 20)]), (Operator: / [(Constant: 2), (Constant: 15)])]), (Operator:  [(Constant: 12), (Constant: ]100)])])>
-    <...ator: + [(Operator: [ [CONSTANT(3), CONSTANT(2), (Operator: / [(Operator: - [CONSTANT(20), CONSTANT(2)]), CONSTANT(15)])]), (Operator:  [CONSTANT(12), CONSTANT(]100)])])>
-     */
+/*
+<...ator: + [(Operator: [- [(Operator:  [(Constant: 3), (Constant: 2), (Constant: 20)]), (Operator: / [(Constant: 2]), (Constant: 15)])]>
+<...ator: + [(Operator: [ [(Constant: 3), (Constant: 2), (Operator: / [(Operator: - [(Constant: 20), (Constant: 2)]]), (Constant: 15)])]>
+ */
 
 }

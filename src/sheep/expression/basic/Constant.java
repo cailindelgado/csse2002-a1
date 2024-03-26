@@ -34,7 +34,7 @@ public class Constant extends Expression {
      */
     @Override
     public String toString() {
-        return "(Constant: " + (int) number + ")";
+        return "CONSTANT(" + (int) number + ")";
     }
 
     /**

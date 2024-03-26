@@ -96,7 +96,8 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement formulaAt(int row, int column) {
         //is the 2 + 2 in a cell
-        //find a way to store the values on the sheet use an array of arrays to pul the expression in each cell
+        //find a way to store the values on the sheet use an array of arrays to pul the expression
+        // in each cell
         if (checker(row, column)) {
             if (UpdateResponse.success().isSuccess()) {
 //                return new ViewElement(, "White", "Black");
