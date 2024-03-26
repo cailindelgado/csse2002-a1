@@ -28,14 +28,4 @@ class Equal extends Arithmetic {
         }
         return 0;
     }
-//    protected long perform(long[] arguments) {
-//        for (long number : arguments) {
-//            for (long number2 : arguments) {
-//                if (!(number == number2)){
-//                    break;
-//                    }
-//                }
-//            }
-//        return 0;
-//    }
 }

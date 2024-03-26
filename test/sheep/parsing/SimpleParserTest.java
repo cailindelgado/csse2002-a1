@@ -104,6 +104,28 @@ public class SimpleParserTest {
         Expression inv4 = parser.parse("2 - 4 ^ ] + 4");
     }
 
+    @Test public void testParseReference() throws ParseException {
+        Parser parser = new SimpleParser(factory);
+        Expression ref = parser.parse("  oo  ");
+        Expression ref2 = parser.parse("WoW + 4");
+        Expression ref3 = parser.parse("WoW = 4");
+        Expression ref4 = parser.parse("WoW / 4");
 
+        assertNotEquals("oo", ref.toString());
+        assertEquals("WoW + 4", ref2.toString());
+        assertEquals("WoW = 4", ref3.toString());
+        assertEquals("WoW / 4", ref4.toString());
+    }
+
+    @Test public void testParse() throws ParseException {
+        Parser parser = new SimpleParser(factory);
+        Expression constant1 = parser.parse("42\t");
+        Expression constant2 = parser.parse("42\n");
+        Expression constant3 = parser.parse("42\s");
+        Expression constant4 = parser.parse("42\b");
+        Expression ref1 = parser.parse("Hello\t");
+        Expression ref2 = parser.parse("Hello\t");
+        Expression ref3 = parser.parse("Hello\t");
+    }
 
 }

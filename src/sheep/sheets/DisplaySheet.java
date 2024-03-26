@@ -10,13 +10,14 @@ import sheep.parsing.Parser;
 
 
 /**
- *
+ * Spreadsheet that displays the expressions it holds without evaluating the expressions.
  */
 public class DisplaySheet implements SheetUpdate, SheetView {
     private final int rows;
     private final int columns;
     private final Parser parser;
     private final Expression defaultExpression;
+    private final Expression[][] sheet;
 
     /**
      * Constructor for DisplaySheet
@@ -35,6 +36,9 @@ public class DisplaySheet implements SheetUpdate, SheetView {
         }
         this.parser = parser;
         this.defaultExpression = defaultExpression;
+
+        sheet = new Expression[this.columns][this.rows];
+        populateDefualt(sheet);
     }
 
     /**
@@ -61,7 +65,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
 
     /**
      * The number of rows in the sheet
-     * @return Ammount of rows in the sheet
+     * @return Amount of rows in the sheet
      */
     public int getRows() {
         return rows;
@@ -69,7 +73,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
 
     /**
      * The number of columns in the sheet
-     * @return Ammount of columns in the sheet
+     * @return Amount of columns in the sheet
      */
     public int getColumns() {
         return columns;
@@ -96,13 +100,11 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement formulaAt(int row, int column) {
         //is the 2 + 2 in a cell
-        //find a way to store the values on the sheet use an array of arrays to pul the expression
-        // in each cell
         if (checker(row, column)) {
             if (UpdateResponse.success().isSuccess()) {
-//                return new ViewElement(, "White", "Black");
+                return new ViewElement(sheet[row][column].render(), "White", "Black");
             }
-//            return new ViewElement(, "White", "Black");
+            return new ViewElement(sheet[row][column].render(), "White", "Black");
         }
         return null;
     }
@@ -119,4 +121,17 @@ public class DisplaySheet implements SheetUpdate, SheetView {
 
         return (req1 && req2);
     }
+
+    /**
+     * populates the sheet with the default expression when created
+     * @param sheet is the sheet with same amount of cells as rows * columns
+     */
+    private void populateDefualt(Expression[][] sheet) {
+        for (int row = 0; row < this.rows; row++) {
+            for (int column = 0; column < this.columns; column++) {
+                sheet[row][column] = defaultExpression;
+            }
+        }
+    }
+
 }

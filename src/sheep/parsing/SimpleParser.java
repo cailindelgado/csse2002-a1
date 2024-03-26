@@ -3,10 +3,6 @@ package sheep.parsing;
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
 import sheep.expression.InvalidExpression;
-import sheep.expression.arithmetic.*;
-import sheep.expression.basic.Constant;
-import sheep.expression.basic.Reference;
-import sheep.expression.CoreFactory;
 
 /**
  * Parser of basic expressions and arithmetic expressions.
@@ -29,8 +25,7 @@ public class SimpleParser implements Parser {
      * @throws ParseException If the string is not recognisable as an expression.
      */
     public Expression parse(String input) throws ParseException {
-        //if the input is a empty string return an empty expression
-        String name;
+        //if the input is an empty string return an empty expression
         if (input.trim().isEmpty()) {
             return factory.createEmpty();
         }
@@ -42,32 +37,29 @@ public class SimpleParser implements Parser {
 
         //checker for if the given input contains any of the following
         if (input.contains("=")) {
-            return parseOutput("=", input);
+            return parseOutput('=', input);
 
         } else if (input.contains("<")) {
-            return parseOutput("<", input);
-
-        } else if (input.contains("(") && input.contains(")")) {
-            return parseOutput("()", input);
+            return parseOutput('<', input);
 
         }  else if (input.contains("+")) {
-            return parseOutput("[+]", input);
+            return parseOutput('+', input);
 
         } else if (input.contains("-") && !negCheck(input)) {
-            return parseOutput("-", input);
+            return parseOutput('-', input);
 
         } else if (input.contains("*")) {
-            return parseOutput("[*]", input);
+            return parseOutput('*', input);
 
         } else if (input.contains("/")) {
-            return parseOutput("/", input);
+            return parseOutput('/', input);
         }
 
         //try to turn the remaining input into a constant, if it fails turn it into a reference
         try {
-            return new Constant(Long.parseLong(input.trim()));
+            return factory.createConstant(Long.parseLong(input.trim()));
         } catch (NumberFormatException e) {
-            return new Reference(input.trim());
+            return factory.createReference(input.trim());
         }
     }
 
@@ -125,23 +117,24 @@ public class SimpleParser implements Parser {
         return true;
     }
 
-    private Expression parseOutput(String name, String input) throws ParseException {
-        String[] inputBits = input.trim().split(name);
+    /**
+     * Handles breaking the input up based on a given operator name, and creates new operators
+     * which match the given name
+     * @param name The operator
+     * @param input is the operator that the method should know to use when splitting up the input
+     *              and creating a new operator, this is of type char
+     * @return returns an appropriate operator class containing an array of expressions
+     * @throws ParseException When the createOperator method in
+     * {@link sheep.expression.CoreFactory} throws an invalid expression
+     */
+    private Expression parseOutput(char name, String input) throws ParseException {
+        String[] inputBits = input.trim().split("" + name);
         Expression[] subBits = parseAssistant(inputBits);
 
-        //name inputs as [+] or [*] how to deal with it??
-        name = name.replace('[', ' ').replace(']', ' ').trim();
         try {
-            return factory.createOperator(name, subBits);
+            return factory.createOperator("" + name, subBits);
         } catch (InvalidExpression e) {
             throw new ParseException("Invalid Expression");
         }
     }
-
-
-/*
-<...ator: + [(Operator: [- [(Operator:  [(Constant: 3), (Constant: 2), (Constant: 20)]), (Operator: / [(Constant: 2]), (Constant: 15)])]>
-<...ator: + [(Operator: [ [(Constant: 3), (Constant: 2), (Operator: / [(Operator: - [(Constant: 20), (Constant: 2)]]), (Constant: 15)])]>
- */
-
 }
