@@ -5,11 +5,12 @@ import sheep.expression.TypeError;
 import sheep.expression.basic.Constant;
 import sheep.expression.basic.Reference;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /**
- *
+ * An arithmetic expression. Performs arithmetic operations on a sequence of sub-expressions.
  */
 public abstract class Arithmetic extends Expression {
     private final String operator;
@@ -94,17 +95,25 @@ public abstract class Arithmetic extends Expression {
      * Dependencies of the arithmetic expression.
      * The dependencies of  an arithmetic expression are the union of all the sub-expressions
      * @return A set containing the union of all sub-expression dependencies
-     * @return
      */
     public Set<String> dependencies() {
-        return null;
+        HashSet<String> dependencies = new HashSet<String>();
+        for (Expression expression : arguments) {
+            if (expression instanceof Reference reference) {
+                dependencies.add(reference.getIdentifier());
+            } else if (expression instanceof Constant constant) {
+                dependencies.add(constant.render());
+            }
+        }
+        return dependencies;
+
     }
 
     /**
      * The result of evaluating this expression
-     * @param state
-     * @return
-     * @throws TypeError
+     * @param state A mapping of references to the expression they hold
+     * @return A constant expression of the result
+     * @throws TypeError If any of the sub-expressions cannot be converted to a numeric value
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
         return null;
@@ -149,5 +158,4 @@ public abstract class Arithmetic extends Expression {
     public String toString() {
         return render();
     }
-
 }

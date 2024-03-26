@@ -2,9 +2,11 @@ package sheep.parsing;
 
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
+import sheep.expression.InvalidExpression;
 import sheep.expression.arithmetic.*;
 import sheep.expression.basic.Constant;
 import sheep.expression.basic.Reference;
+import sheep.expression.CoreFactory;
 
 /**
  * Parser of basic expressions and arithmetic expressions.
@@ -28,6 +30,7 @@ public class SimpleParser implements Parser {
      */
     public Expression parse(String input) throws ParseException {
         //if the input is a empty string return an empty expression
+        String name;
         if (input.trim().isEmpty()) {
             return factory.createEmpty();
         }
@@ -39,41 +42,25 @@ public class SimpleParser implements Parser {
 
         //checker for if the given input contains any of the following
         if (input.contains("=")) {
-            String[] inputBits = input.trim().split("=");
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.equal(subBits);
+            return parseOutput("=", input);
 
         } else if (input.contains("<")) {
-            String[] inputBits = input.trim().split("<");
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.less(subBits);
+            return parseOutput("<", input);
 
-//        } else if (input.contains("(") && input.contains(")")) {
-            /*
-            returns null because does nothing with the inputbits once everything has been parsed
-             */
-//            String[] inputBits = input.trim().split("[()]");
-//            parseAssistant(inputBits);
+        } else if (input.contains("(") && input.contains(")")) {
+            return parseOutput("()", input);
 
         }  else if (input.contains("+")) {
-            String[] inputBits = input.trim().split("[+]"); //+ is a quantifier so [] required
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.plus(subBits);
+            return parseOutput("[+]", input);
 
         } else if (input.contains("-") && !negCheck(input)) {
-            String[] inputBits = input.trim().split("-");
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.minus(subBits);
+            return parseOutput("-", input);
 
         } else if (input.contains("*")) {
-            String[] inputBits = input.trim().split("[*]"); //* is a quantifier so [] required
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.times(subBits);
+            return parseOutput("[*]", input);
 
         } else if (input.contains("/")) {
-            String[] inputBits = input.trim().split("/");
-            Expression[] subBits = parseAssistant(inputBits);
-            return Arithmetic.divide(subBits);
+            return parseOutput("/", input);
         }
 
         //try to turn the remaining input into a constant, if it fails turn it into a reference
@@ -99,7 +86,6 @@ public class SimpleParser implements Parser {
         }
         return result;
     }
-
 
     /**
      * Checks if the given input contains a negative value
@@ -137,5 +123,18 @@ public class SimpleParser implements Parser {
             }
         }
         return true;
+    }
+
+    private Expression parseOutput(String name, String input) throws ParseException {
+        String[] inputBits = input.trim().split(name);
+        Expression[] subBits = parseAssistant(inputBits);
+
+        //name inputs as [+] or [*] how to deal with it??
+        name = name.replace('[', ' ').replace(']', ' ').trim();
+        try {
+            return factory.createOperator(name, subBits);
+        } catch (InvalidExpression e) {
+            throw new ParseException("Invalid Expression");
+        }
     }
 }

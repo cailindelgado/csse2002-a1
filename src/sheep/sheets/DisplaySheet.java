@@ -84,6 +84,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public ViewElement valueAt(int row, int column) {
+        //is the 2 + 2 result (4) in the cell.
         if (checker(row, column)) {
             if (UpdateResponse.success().isSuccess()) {
                 return new ViewElement(defaultExpression.render(), "White", "Black");
@@ -100,8 +101,8 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public ViewElement formulaAt(int row, int column) {
+        //is the 2 + 2 in a cell
         if (checker(row, column)) {
-            System.out.println("boooooooo checkstyle suckssssssssssssssssss");
         }
         return null;
     }

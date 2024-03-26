@@ -1,5 +1,8 @@
 package sheep.expression;
 
+/**
+ * This is an exception which will be thrown when a invalid expression is found
+ */
 public class InvalidExpression extends Exception {
 
     /**

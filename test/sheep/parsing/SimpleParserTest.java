@@ -33,8 +33,10 @@ public class SimpleParserTest {
     @Test public void testParsePlusExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 +3");
+        System.out.println(result);
         Expression result2 = parser.parse("1+ 3 + 4 + 5");
         Expression result3 = parser.parse("1+3+4+5");
+
         assertEquals("1 + 3", result.toString());
         assertEquals("1 + 3 + 4 + 5", result2.toString());
         assertEquals("1 + 3 + 4 + 5", result3.toString());

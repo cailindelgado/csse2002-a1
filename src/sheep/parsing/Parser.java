@@ -3,7 +3,8 @@ package sheep.parsing;
 import sheep.expression.Expression;
 
 /**
- *
+ * Parser of strings into expressions. The parser interface is used by any parser that converts
+ * arbitrary strings into expressions
  */
 public interface Parser {
 
