@@ -36,7 +36,7 @@ public class Reference extends Expression {
      */
     @Override
     public String toString() {
-        return "REFERENCE(" + identifier + ")";
+        return "(Reference: " + identifier + ")";
     }
 
     /**
