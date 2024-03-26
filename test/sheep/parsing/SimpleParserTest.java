@@ -2,6 +2,7 @@ package sheep.parsing;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import sheep.expression.CoreFactory;
@@ -13,24 +14,28 @@ public class SimpleParserTest {
 
     private ExpressionFactory factory;
 
-    @Before public void setUp() {
+    @Before
+    public void setUp() {
         //using corefactory because it implements the interface
         factory = new CoreFactory();
     }
 
-    @Test public void testParseEmptyString() throws ParseException {
+    @Test
+    public void testParseEmptyString() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("");
         assertEquals(factory.createEmpty().toString(), result.toString());
     }
 
-    @Test public void testParseEqualExpression() throws ParseException {
+    @Test
+    public void testParseEqualExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1=2");
         System.out.println(result.toString());
     }
 
-    @Test public void testParsePlusExpression() throws ParseException {
+    @Test
+    public void testParsePlusExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 +3");
         System.out.println(result);
@@ -42,7 +47,8 @@ public class SimpleParserTest {
         assertEquals("1 + 3 + 4 + 5", result3.toString());
     }
 
-    @Test public void testParseMinusExpression() throws ParseException {
+    @Test
+    public void testParseMinusExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 -3");
         Expression result2 = parser.parse("1- 3 - 4-5");
@@ -50,7 +56,8 @@ public class SimpleParserTest {
         assertEquals("1 - 3 - 4 - 5", result2.toString());
     }
 
-    @Test public void testParseDivideExpression() throws ParseException {
+    @Test
+    public void testParseDivideExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 /3");
         Expression result2 = parser.parse("1/ 3 / 4/5");
@@ -58,7 +65,8 @@ public class SimpleParserTest {
         assertEquals("1 / 3 / 4 / 5", result2.toString());
     }
 
-    @Test public void testParseTimesExpression() throws ParseException {
+    @Test
+    public void testParseTimesExpression() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 *3");
         Expression result2 = parser.parse("1* 3 * 4*5");
@@ -66,7 +74,8 @@ public class SimpleParserTest {
         assertEquals("1 * 3 * 4 * 5", result2.toString());
     }
 
-    @Test public void testParseExceptionAdv() throws ParseException {
+    @Test
+    public void testParseExceptionAdv() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("1 < 3+4 * 6 / 5 -43 + 88");
         Expression result2 = parser.parse("1 - ( 3+4)* 6 / 5 -43 + 88");
@@ -78,7 +87,8 @@ public class SimpleParserTest {
 
     }
 
-    @Test public void testParseNegs() throws ParseException {
+    @Test
+    public void testParseNegs() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("-2");
         Expression result2 = parser.parse("4 --3");
@@ -90,12 +100,13 @@ public class SimpleParserTest {
         Expression result8 = parser.parse("-Hell*o");       // same argument as above
     }
 
-    @Test public void testParseGrdScp() throws ParseException {
+    @Test
+    public void testParseGrdScp() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("3 2  20 - 2/15 +12* 100");
     }
 
-    @Test (expected = ParseException.class)
+    @Test(expected = ParseException.class)
     public void testParseInvalid() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression inv = parser.parse("3!502;]i");
@@ -104,7 +115,8 @@ public class SimpleParserTest {
         Expression inv4 = parser.parse("2 - 4 ^ ] + 4");
     }
 
-    @Test public void testParseReference() throws ParseException {
+    @Test
+    public void testParseReference() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression ref = parser.parse("  oo  ");
         Expression ref2 = parser.parse("WoW + 4");
@@ -117,7 +129,8 @@ public class SimpleParserTest {
         assertEquals("WoW / 4", ref4.toString());
     }
 
-    @Test public void testParse() throws ParseException {
+    @Test
+    public void testParse() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression constant1 = parser.parse("42\t");
         Expression constant2 = parser.parse("42\n");

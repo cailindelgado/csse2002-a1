@@ -32,13 +32,13 @@ public class DisplaySheet implements SheetUpdate, SheetView {
             this.rows = rows;
             this.columns = columns;
         } else {
-            this.rows = this.columns = 30;
+            this.rows = this.columns = 10;
         }
         this.parser = parser;
         this.defaultExpression = defaultExpression;
 
-        sheet = new Expression[this.columns][this.rows];
-        populateDefualt(sheet);
+        sheet = new Expression[this.rows][this.columns];
+        populateDefault(sheet);
     }
 
     /**
@@ -126,7 +126,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * populates the sheet with the default expression when created
      * @param sheet is the sheet with same amount of cells as rows * columns
      */
-    private void populateDefualt(Expression[][] sheet) {
+    private void populateDefault(Expression[][] sheet) {
         for (int row = 0; row < this.rows; row++) {
             for (int column = 0; column < this.columns; column++) {
                 sheet[row][column] = defaultExpression;
