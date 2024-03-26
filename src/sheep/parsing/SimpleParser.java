@@ -130,10 +130,12 @@ public class SimpleParser implements Parser {
      */
     private boolean checkInvalid(String input) {
         for (int pos = 0; pos < input.length(); pos++) {
-            if (Character.isLetterOrDigit(input.charAt(pos))) {
-                return true;
+            if (!(Character.isLetterOrDigit(input.charAt(pos)))) {
+                if (!("+-*/<= ".contains("" + input.charAt(pos)))) {
+                    return false;
+                }
             }
         }
-        return false;
+        return true;
     }
 }

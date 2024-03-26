@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import sheep.expression.CoreFactory;
 import sheep.expression.Expression;
 import sheep.expression.ExpressionFactory;
+import sheep.parsing.ParseException;
 
 public class SimpleParserTest {
 
@@ -90,8 +91,17 @@ public class SimpleParserTest {
     @Test public void testParseGrdScp() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("3 2  20 - 2/15 +12* 100");
-        Expression result2 = parser.parse("3 2  20 - 2/15 +12* 100");
     }
+
+    @Test (expected = ParseException.class)
+    public void testParseInvalid() throws ParseException {
+        Parser parser = new SimpleParser(factory);
+        Expression inv = parser.parse("3!502;]i");
+        Expression inv2 = parser.parse("2 + 5 / 6 * &");
+        Expression inv3 = parser.parse("2 + 5 / 6 * 5_");
+        Expression inv4 = parser.parse("2 - 4 ^ ] + 4");
+    }
+
+
+
 }
-
-

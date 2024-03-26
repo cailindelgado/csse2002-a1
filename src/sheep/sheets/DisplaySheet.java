@@ -7,17 +7,19 @@ import sheep.core.ViewElement;
 import sheep.expression.Expression;
 import sheep.parsing.ParseException;
 import sheep.parsing.Parser;
-import sheep.parsing.SimpleParser;
 
 
+/**
+ *
+ */
 public class DisplaySheet implements SheetUpdate, SheetView {
-    private int rows;
-    private int columns;
-    private Parser parser;
-    private Expression defaultExpression;
+    private final int rows;
+    private final int columns;
+    private final Parser parser;
+    private final Expression defaultExpression;
 
     /**
-     *
+     * Constructor for DisplaySheet
      * @param parser A parser to use for parsing any updates to the sheet
      * @param defaultExpression The default expression with which to populate the empty sheet
      * @param rows Amount of rows for the new sheet
@@ -25,10 +27,12 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * @requires rows > 0, columns > 0
      */
     public DisplaySheet(Parser parser, Expression defaultExpression, int rows, int columns) {
-        if ((rows > 0) && (columns > 0)){
+        if ((rows > 0) && (columns > 0)) {
             this.rows = rows;
             this.columns = columns;
-        } else this.rows = this.columns = 30;
+        } else {
+            this.rows = this.columns = 30;
+        }
         this.parser = parser;
         this.defaultExpression = defaultExpression;
     }
@@ -47,11 +51,12 @@ public class DisplaySheet implements SheetUpdate, SheetView {
         if (checker(row, column)) {
             try {
                 parser.parse(input);
-                UpdateResponse.success();
+                return UpdateResponse.success();
             } catch (ParseException e) {
-                UpdateResponse.fail("Unable to parse: " + input);
+                return UpdateResponse.fail("Unable to parse: " + input);
             }
-        } return null;
+        }
+        return null;
     }
 
     /**
@@ -81,10 +86,11 @@ public class DisplaySheet implements SheetUpdate, SheetView {
     public ViewElement valueAt(int row, int column) {
         if (checker(row, column)) {
             if (UpdateResponse.success().isSuccess()) {
-                return new ViewElement(defaultExpression.render(),"White", "Black");
+                return new ViewElement(defaultExpression.render(), "White", "Black");
             }
             return new ViewElement(defaultExpression.toString(), "White", "Black");
-        } return null;
+        }
+        return null;
     }
 
     /**
@@ -95,6 +101,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      */
     public ViewElement formulaAt(int row, int column) {
         if (checker(row, column)) {
+            System.out.println("boooooooo checkstyle suckssssssssssssssssss");
         }
         return null;
     }
