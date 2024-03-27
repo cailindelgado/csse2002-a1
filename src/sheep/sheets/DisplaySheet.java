@@ -38,7 +38,7 @@ public class DisplaySheet implements SheetUpdate, SheetView {
         this.defaultExpression = defaultExpression;
 
         sheet = new Expression[this.rows][this.columns];
-        populateDefault(sheet);
+//        populateDefault(sheet);
     }
 
     /**
