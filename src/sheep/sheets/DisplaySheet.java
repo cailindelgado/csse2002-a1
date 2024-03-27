@@ -101,9 +101,9 @@ public class DisplaySheet implements SheetUpdate, SheetView {
     public ViewElement formulaAt(int row, int column) {
         //is the 2 + 2 in a cell
         if (checker(row, column)) {
-//            if (UpdateResponse.success().isSuccess()) {
-//                return new ViewElement(sheet[row][column].render(), "White", "Black");
-//            }
+            if (UpdateResponse.success().isSuccess()) {
+                return new ViewElement(sheet[row][column].render(), "White", "Black");
+            }
             return new ViewElement(sheet[row][column].render(), "White", "Black");
         }
         return null;
