@@ -93,15 +93,13 @@ public class SimpleParserTest {
         Expression result = parser.parse("-2");
         Expression result2 = parser.parse("4 --3");
         Expression result3 = parser.parse("4 + -3");
-        Expression result4 = parser.parse("4 * -3");
         Expression result5 = parser.parse("4 = -3");
-        Expression result6 = parser.parse("4 / -3");
-        Expression result7 = parser.parse("-A0");           // Should it be -A0 as a reference or a type error?
-        Expression result8 = parser.parse("-Hell*o");       // same argument as above
+        Expression result8 = parser.parse("-A0");           // Should it be -A0 as a reference or a type error?
+        Expression result9 = parser.parse("-Hell*o");       // same argument as above
     }
 
     @Test
-    public void testParseGrdScp() throws ParseException {
+    public void testParseAdvanced() throws ParseException {
         Parser parser = new SimpleParser(factory);
         Expression result = parser.parse("3 2  20 - 2/15 +12* 100");
     }

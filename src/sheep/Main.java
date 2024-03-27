@@ -18,6 +18,7 @@ public class Main {
 
     /**
      * Start the spreadsheet program.
+     *
      * @param args Parameters to the program, currently not supported.
      * @throws FunException If a pre-populator fails to insert an expression.
      */

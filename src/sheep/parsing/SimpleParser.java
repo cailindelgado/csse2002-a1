@@ -32,6 +32,7 @@ public class SimpleParser implements Parser {
             return factory.createEmpty();
         }
 
+        //replace any escape characters that might get in the way
         input = input.replaceAll("[\t\n\r\f]", " ");
 
         //check if input is valid
