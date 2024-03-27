@@ -14,7 +14,7 @@ import java.util.Map;
 public class SheetBuilder {
     private final Parser parser;
     private final Expression defaultExpression;
-//    private final Map<String, Expression> builtints;
+    private final Map<String, Expression> builtints;
 
     /**
      * Construct an instance of SheetBuilder than will create Sheet instances using the given
@@ -40,7 +40,6 @@ public class SheetBuilder {
      * @requires identifier cannot be a valid cell location reference, e.g. A1.
      */
     public SheetBuilder includeBuiltIn(String identifier, Expression expression) {
-
         return new SheetBuilder(parser, defaultExpression);
 
     }
@@ -52,7 +51,7 @@ public class SheetBuilder {
      * @param columns Amount of columns for the new sheet
      * @return A new sheet with the appropriate built-ins and of the specified dimensions.
      */
-//    public Sheet empty(int rows, int columns) {
-//        return new Sheet(parser, builtints, defaultExpression, rows, columns);
-//    }
+    public Sheet empty(int rows, int columns) {
+        return new Sheet(parser, builtints, defaultExpression, rows, columns);
+    }
 }

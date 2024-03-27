@@ -76,16 +76,16 @@ public class CellLocation {
     }
 
     /**
-     *
-     * @return
+     * A hashcode method that respects the equals(Object) method
+     * @return An appropriate hashcode value for this instance
      */
     public int hashCode() {
         return 0;
     }
 
     /**
-     *
-     * @return
+     * A string representation of a cell location.*
+     * @return A string representation of this cell location, e.g. A2 or C23.
      */
     public String toString() {
         return String.valueOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(column)) + row;

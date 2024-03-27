@@ -18,7 +18,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public  ViewElement formulaAt(int row, int column) {
-        if (checker(row, column, null)) {
+        if (checker(row, column)) {
             if ((row >= 2) && (row <= 3) && (column >= 2) && (column <= 3)) {
                 return new ViewElement("GREEN", "Green", "Black");
             }
@@ -35,7 +35,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * @require 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public ViewElement valueAt(int row, int column) {
-        if (checker(row, column, null)) {
+        if (checker(row, column)) {
             if ((row >= 2) && (row <= 3) && (column >= 2) && (column <= 3)) {
                 return new ViewElement("W", "Green", "Black");
             }
@@ -68,7 +68,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * @require 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
      */
     public UpdateResponse update(int row, int column, String input) {
-        if (checker(row, column, input)) {
+        if (checker(row, column) && !input.isEmpty()) {
             return UpdateResponse.fail("Sheet is view only.");
         }
         return UpdateResponse.success();
@@ -79,19 +79,12 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * performs the following check: 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
      * @param row The row index
      * @param column The column index
-     * @param input  A String input
      * @return true or false, based off of the
      */
-    private boolean checker(int row, int column, String input) {
+    private boolean checker(int row, int column) {
         boolean req1 = ((0 < row) || (0 == row)) && (row < getRows());
         boolean req2 = ((0 < column) || (0 == column)) && (column < getColumns());
-        if (input == null) {
-            return (req1 && req2);
-        } else {
-            return (input != null && req1 && req2);
-        }
-
-        // "Don't you want to help the world with your code, and make it public?" - Vishan on making Java methods private
+        return (req1 && req2);
     }
 
 }
