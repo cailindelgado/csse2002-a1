@@ -65,7 +65,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * @param column The column index to update
      * @param input The value as a string to replace
      * @return "A failed update as the sheet is view only"
-     * @require 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
+     * @requires 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
      */
     public UpdateResponse update(int row, int column, String input) {
         if (checker(row, column) && input.isEmpty()) {
