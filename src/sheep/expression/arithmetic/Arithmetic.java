@@ -116,15 +116,13 @@ public abstract class Arithmetic extends Expression {
      * @throws TypeError If any of the sub-expressions cannot be converted to a numeric value
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
-        for (Expression expression : arguments) {
+        long[] result = new long[arguments.length];
 
+        for (int pos = 0; pos < arguments.length; pos++) {
+            result[pos] = arguments[pos].value(state).value();
         }
-        return null;
 
     }
-
-
-
 
     /**
      * Perform the arithmetic operation over a list of arguments
