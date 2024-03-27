@@ -125,6 +125,7 @@ public abstract class Arithmetic extends Expression {
         return new Constant(this.perform(result));
     }
 
+    // Iterate over the
 //    private long
 
     /**

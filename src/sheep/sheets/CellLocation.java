@@ -40,10 +40,35 @@ public class CellLocation {
      * @require ref not null.
      */
     public static Optional<CellLocation> maybeReference(String ref) {
-        if (ref != null) {
-            return Optional.empty();
+        String refColumn;
+        String refRow;
+        if ((ref != null)) {
+
+            refRow = ref.substring(1);
+
+            refColumn = "" + ref.charAt(0);
+            //check if the first position of ref is a Capital letter,
+            if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(refColumn)) {
+                if (checkValid(refRow)) {
+                    return Optional.of(new CellLocation(Integer.parseInt(refRow), ref.charAt(0)));
+                }
+            }
         }
-        return null;
+        return Optional.empty();
+    }
+
+    /**
+     * checks if the string is a number, that is positive
+     * @param row a string input of the row to check
+     * @return true if the string can be evaluated to a positive number, false otherwise
+     */
+    private static boolean checkValid(String row) {
+        for (int pos = 0; pos < row.length(); pos++) {
+            if (!Character.isDigit(row.charAt(pos))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -71,6 +96,9 @@ public class CellLocation {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj instanceof CellLocation cellLocation) {
+            return (this.row == cellLocation.getRow()) && (this.column == cellLocation.getColumn());
+        }
         return false;
     }
 
