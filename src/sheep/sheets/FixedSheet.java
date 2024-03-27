@@ -68,10 +68,7 @@ public class FixedSheet implements SheetView, SheetUpdate {
      * @requires 0 <= row < getRows(), 0 <= column < getColumns(), input!= null
      */
     public UpdateResponse update(int row, int column, String input) {
-        if (checker(row, column) && input.isEmpty()) {
-            return UpdateResponse.fail("Sheet is view only.");
-        }
-        return UpdateResponse.success();
+        return UpdateResponse.fail("Sheet is view only.");
     }
 
     /**
