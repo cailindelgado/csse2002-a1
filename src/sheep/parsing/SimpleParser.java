@@ -100,11 +100,11 @@ public class SimpleParser implements Parser {
         }
 
         //iterate over the broken up bits of input to see if the chain can continue
-        for (String bit : bits) {
-            if (bit.contains("*") || bit.contains("/")) {
-                return true;
-            }
-        }
+//        for (String bit : bits) {
+//            if (bit.contains("*") || bit.contains("/")) {
+//                return true;
+//            }
+//        }
         return false;
     }
 
