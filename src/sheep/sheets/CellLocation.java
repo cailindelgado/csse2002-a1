@@ -107,7 +107,7 @@ public class CellLocation {
      * @return An appropriate hashcode value for this instance
      */
     public int hashCode() {
-        return (int) Math.pow(((row + column) >>> 30), (row + column));
+        return Integer.toString((row + column)).hashCode() * 23;
     }
 
     /**

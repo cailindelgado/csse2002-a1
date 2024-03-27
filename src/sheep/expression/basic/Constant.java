@@ -57,8 +57,7 @@ public class Constant extends Expression {
      */
     @Override
     public int hashCode() {
-        //look at the practicals for the hash stuff
-        return (int) Math.pow((value() >>> 30), value());
+        return Long.toString(number).hashCode() * 23;
     }
 
     /**

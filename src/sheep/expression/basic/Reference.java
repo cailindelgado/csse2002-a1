@@ -75,12 +75,7 @@ public class Reference extends Expression {
      */
     @Override
     public int hashCode() {
-        //write own hashcode method, not the one java has.
-        int hash = 0;
-        for (int pos = 0; pos < (identifier.length() - 1); pos++) {
-            hash += (int) (identifier.charAt(pos) * Math.pow(30, identifier.length() - 2));
-        }
-        return hash;
+        return identifier.hashCode() * 23;
     }
 
     /**
