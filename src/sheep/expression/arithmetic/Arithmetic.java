@@ -118,31 +118,29 @@ public abstract class Arithmetic extends Expression {
     public Expression value(Map<String, Expression> state) throws TypeError {
         long[] results = new long[arguments.length];
 
-//        for (int pos = 0; pos < arguments.length; pos++) {
-//            if (arguments[pos] instanceof Constant constant) {
-//                //using double .value() to deal with any annoyances
-//                results[pos] = constant.value(state).value();
-//
-//            } else if (arguments[pos] instanceof Reference reference) {
-//                //using double .value() to deal with any annoyances
-//                results[pos] = reference.value(state).value();
-//
-//            }
+        for (int pos = 0; pos < arguments.length; pos++) {
+            if (arguments[pos] instanceof Constant constant) {
+                //using double .value() to deal with any annoyances
+                results[pos] = constant.value(state).value();
+
+            } else if (arguments[pos] instanceof Reference reference) {
+                //using double .value() to deal with any annoyances
+                results[pos] = reference.value(state).value();
+
+            }
+
 //            results[pos] = valueAssist(arguments[pos]);
-//        }
-
-        int pos = 0;
-        while (pos < arguments.length) {
-            results[pos] = arguments[pos].value(state).value();
-            pos++;
         }
-        return new Constant(this.perform(results));
+        long result = this.perform(results);
+        return new Constant(result);
 
-//        for (int pos = 0; pos < arguments.length; pos++) {
+//        int pos = 0;
+//        while (pos < arguments.length) {
 //            results[pos] = arguments[pos].value(state).value();
+//            pos++;
 //        }
-//        return new Constant(this.perform(results));
-
+//        long result = this.perform(results);
+//        return new Constant(result);
     }
 
 //    private long valueAssist(Expression args) {

@@ -97,7 +97,7 @@ public class CellLocation {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CellLocation cellLocation) {
-            return (this.row == cellLocation.getRow()) && (this.column == cellLocation.getColumn());
+            return (row == cellLocation.getRow()) && (column == cellLocation.getColumn());
         }
         return false;
     }
@@ -106,6 +106,7 @@ public class CellLocation {
      * A hashcode method that respects the equals(Object) method
      * @return An appropriate hashcode value for this instance
      */
+    @Override
     public int hashCode() {
         return Integer.toString((row + column)).hashCode() * 23;
     }
@@ -114,6 +115,7 @@ public class CellLocation {
      * A string representation of a cell location.*
      * @return A string representation of this cell location, e.g. A2 or C23.
      */
+    @Override
     public String toString() {
         return String.valueOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(column)) + row;
     }

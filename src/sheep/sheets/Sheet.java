@@ -20,6 +20,8 @@ public class Sheet implements SheetView, SheetUpdate {
     private final Expression defaultExpression;
     private final int rows;
     private final int columns;
+    private int row;
+    private int column;
 
 
     /**
@@ -111,7 +113,7 @@ public class Sheet implements SheetView, SheetUpdate {
      * @require location is within the bounds (row/column) of the spreadsheet
      */
     public Expression formulaAt(CellLocation location) {
-        return null;
+
     }
 
     /**
@@ -121,7 +123,9 @@ public class Sheet implements SheetView, SheetUpdate {
      * @return All the cells which use the given cell as a dependency
      */
     public Expression valueAt(CellLocation location) {
-        return null;
+        row = location.getRow();
+        column = location.getColumn();
+
     }
 
     /**
@@ -146,6 +150,14 @@ public class Sheet implements SheetView, SheetUpdate {
      *                   TypeError being thrown
      */
     public void update(CellLocation location, Expression cell) throws TypeError {
-        throw new TypeError();
+        int cellRow = location.getRow();
+        int cellColumn = location.getColumn();
+
+        if (UpdateResponse.success().isSuccess()) {
+            throw new TypeError();
+        } else {
+            throw new TypeError();
+        }
+
     }
 }
