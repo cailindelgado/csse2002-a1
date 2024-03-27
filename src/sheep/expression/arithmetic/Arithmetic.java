@@ -116,17 +116,33 @@ public abstract class Arithmetic extends Expression {
      * @throws TypeError If any of the sub-expressions cannot be converted to a numeric value
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
-        long[] result = new long[arguments.length];
+        long[] results = new long[arguments.length];
 
-        for (int pos = 0; pos < arguments.length; pos++) {
-            result[pos] = arguments[pos].value(state).value();
+//        for (int pos = 0; pos < arguments.length; pos++) {
+//            if (arguments[pos] instanceof Constant constant) {
+//                //using double .value() to deal with any annoyances
+//                results[pos] = constant.value(state).value();
+//
+//            } else if (arguments[pos] instanceof Reference reference) {
+//                //using double .value() to deal with any annoyances
+//                results[pos] = reference.value(state).value();
+//
+//            }
+//            results[pos] = valueAssist(arguments[pos]);
+//        }
+
+        int pos = 0;
+        while (pos++ < arguments.length) {
+            results[pos] = arguments[pos].value(state).value();
         }
+        return new Constant(this.perform(results));
 
-        return new Constant(this.perform(result));
     }
 
-    // Iterate over the
-//    private long
+//    private long valueAssist(Expression args) {
+//
+//        return new Constant(this.perform(args));
+//    }
 
     /**
      * Perform the arithmetic operation over a list of arguments
