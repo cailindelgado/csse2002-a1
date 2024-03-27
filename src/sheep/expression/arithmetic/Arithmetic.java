@@ -116,7 +116,11 @@ public abstract class Arithmetic extends Expression {
      * @throws TypeError If any of the sub-expressions cannot be converted to a numeric value
      */
     public Expression value(Map<String, Expression> state) throws TypeError {
+        for (Expression expression : arguments) {
+
+        }
         return null;
+
     }
 
 
