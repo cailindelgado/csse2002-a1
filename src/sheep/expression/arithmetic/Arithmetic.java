@@ -122,6 +122,8 @@ public abstract class Arithmetic extends Expression {
             result[pos] = arguments[pos].value(state).value();
         }
 
+        return null;
+
     }
 
     /**
