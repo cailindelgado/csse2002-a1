@@ -18,17 +18,18 @@ class Less extends Arithmetic {
      * @return 1 if all arguments are equal, 0 otherwise
      */
     protected long perform(long[] arguments) {
-        int counter = -1; //starts at -1 as final counter val will be 1 less than the array length
+        int counter = -1; //starts at -1 as final counter value will be 1 less than the array length
         for (int index = 0; index < arguments.length; index++) {
-            if ((index + 1) > arguments.length) {
+            if ((index + 1) == arguments.length) {
                 break;
             }
 
-            if ((arguments[index] < arguments[index + 1])) {
-                counter++;
+            //check if current index is greater than the next one
+            if ((arguments[index] > arguments[index + 1])) {
+                return 0;
             }
         }
-        return (counter == arguments.length) ? 1 : 0;
+        return 1;
     }
 
 }

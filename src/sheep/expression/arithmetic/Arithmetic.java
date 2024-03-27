@@ -122,9 +122,10 @@ public abstract class Arithmetic extends Expression {
             result[pos] = arguments[pos].value(state).value();
         }
 
-        return null;
-
+        return new Constant(this.perform(result));
     }
+
+//    private long
 
     /**
      * Perform the arithmetic operation over a list of arguments
