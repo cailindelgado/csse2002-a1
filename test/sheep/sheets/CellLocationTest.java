@@ -12,8 +12,8 @@ public class CellLocationTest {
 
     @Test
     public void holdsValue() {
-        CellLocation testing = new CellLocation(4, 'A');
         assertEquals(Optional.of(new CellLocation(0,'A')), CellLocation.maybeReference("A0"));
+        assertNotEquals(Optional.of(new CellLocation(0,'A')), CellLocation.maybeReference("A1"));
 
     }
 

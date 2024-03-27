@@ -40,7 +40,7 @@ public class SheetBuilder {
      */
     public SheetBuilder includeBuiltIn(String identifier, Expression expression) {
         builtIns.put(identifier, expression);
-        return new SheetBuilder(parser, builtIns.get(identifier));
+        return this;
     }
 
     /**
@@ -51,9 +51,6 @@ public class SheetBuilder {
      * @return A new sheet with the appropriate built-ins and of the specified dimensions.
      */
     public Sheet empty(int rows, int columns) {
-        if (builtIns.isEmpty()) {
-            builtIns.put("A0", defaultExpression);
-        }
         return new Sheet(parser, builtIns, defaultExpression, rows, columns);
     }
 }

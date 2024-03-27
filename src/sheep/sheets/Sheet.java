@@ -104,7 +104,7 @@ public class Sheet implements SheetView, SheetUpdate {
     }
 
     /**
-     * The formula expression currently stores at the location in the spreadsheet
+     * The formula expression currently stored at the location in the spreadsheet
      *
      * @param location A cell location within the spreadsheet
      * @return The formula expression at the given cell location
