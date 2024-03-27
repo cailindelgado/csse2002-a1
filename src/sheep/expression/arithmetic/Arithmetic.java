@@ -131,8 +131,7 @@ public abstract class Arithmetic extends Expression {
 //            results[pos] = valueAssist(arguments[pos]);
 //        }
 
-        int pos = 0;
-        while (pos++ < arguments.length) {
+        for (int pos = 0; pos < arguments.length; pos++) {
             results[pos] = arguments[pos].value(state).value();
         }
         return new Constant(this.perform(results));
