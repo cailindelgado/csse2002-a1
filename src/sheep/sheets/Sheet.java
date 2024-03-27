@@ -33,7 +33,7 @@ public class Sheet implements SheetView, SheetUpdate {
      * @param columns           Amount of columns for the new sheet
      * @require rows > 0, columns > 0 && columns < 26
      */
-    public Sheet(Parser parser, Map<String, Expression> builtins, Expression defaultExpression,
+    Sheet(Parser parser, Map<String, Expression> builtins, Expression defaultExpression,
                  int rows, int columns) {
         this.parser = parser;
         this.builtins = builtins;

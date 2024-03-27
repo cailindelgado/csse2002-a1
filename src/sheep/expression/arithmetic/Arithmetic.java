@@ -119,6 +119,9 @@ public abstract class Arithmetic extends Expression {
         return null;
     }
 
+
+
+
     /**
      * Perform the arithmetic operation over a list of arguments
      * @param arguments A list of numbers to perform the operation upon
