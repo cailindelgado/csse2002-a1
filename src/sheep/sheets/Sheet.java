@@ -114,6 +114,7 @@ public class Sheet implements SheetView, SheetUpdate {
      */
     public Expression formulaAt(CellLocation location) {
 
+        return null;
     }
 
     /**
@@ -126,6 +127,7 @@ public class Sheet implements SheetView, SheetUpdate {
         row = location.getRow();
         column = location.getColumn();
 
+        return null;
     }
 
     /**
