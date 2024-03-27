@@ -3,7 +3,7 @@ package sheep.sheets;
 import sheep.expression.Expression;
 import sheep.parsing.Parser;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Builder pattern to construct sheet instances
@@ -14,7 +14,7 @@ import java.util.Map;
 public class SheetBuilder {
     private final Parser parser;
     private final Expression defaultExpression;
-    private final Map<String, Expression> builtints;
+    private final HashMap<String, Expression> builtIns = new HashMap<String, Expression>();
 
     /**
      * Construct an instance of SheetBuilder than will create Sheet instances using the given
@@ -26,7 +26,6 @@ public class SheetBuilder {
     public SheetBuilder(Parser parser, Expression defaultExpression) {
         this.parser = parser;
         this.defaultExpression = defaultExpression;
-
     }
 
     /**
@@ -40,8 +39,8 @@ public class SheetBuilder {
      * @requires identifier cannot be a valid cell location reference, e.g. A1.
      */
     public SheetBuilder includeBuiltIn(String identifier, Expression expression) {
-        return new SheetBuilder(parser, defaultExpression);
-
+        builtIns.put(identifier, expression);
+        return new SheetBuilder(parser, builtIns.get(identifier));
     }
 
     /**
@@ -52,6 +51,9 @@ public class SheetBuilder {
      * @return A new sheet with the appropriate built-ins and of the specified dimensions.
      */
     public Sheet empty(int rows, int columns) {
-        return new Sheet(parser, builtints, defaultExpression, rows, columns);
+        if (builtIns.isEmpty()) {
+            builtIns.put("A0", defaultExpression);
+        }
+        return new Sheet(parser, builtIns, defaultExpression, rows, columns);
     }
 }

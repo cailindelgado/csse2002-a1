@@ -1,6 +1,5 @@
 package sheep.sheets;
 
-//Stage 2
 import java.util.Optional;
 
 /**
@@ -80,7 +79,7 @@ public class CellLocation {
      * @return An appropriate hashcode value for this instance
      */
     public int hashCode() {
-        return 0;
+        return (int) Math.pow(((row + column) >>> 30), (row + column));
     }
 
     /**

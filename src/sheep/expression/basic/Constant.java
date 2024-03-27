@@ -57,8 +57,6 @@ public class Constant extends Expression {
      */
     @Override
     public int hashCode() {
-        //create a unique number using the value of the constant instance
-        // return toString().hashCode();
         return (int) Math.pow((value() >>> 30), value());
     }
 
