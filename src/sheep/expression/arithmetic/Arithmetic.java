@@ -124,29 +124,15 @@ public abstract class Arithmetic extends Expression {
                 results[pos] = constant.value(state).value();
 
             } else if (arguments[pos] instanceof Reference reference) {
-                //using double .value() to deal with any annoyances
                 results[pos] = reference.value(state).value();
 
             }
 
-//            results[pos] = valueAssist(arguments[pos]);
         }
         long result = this.perform(results);
         return new Constant(result);
 
-//        int pos = 0;
-//        while (pos < arguments.length) {
-//            results[pos] = arguments[pos].value(state).value();
-//            pos++;
-//        }
-//        long result = this.perform(results);
-//        return new Constant(result);
     }
-
-//    private long valueAssist(Expression args) {
-//
-//        return new Constant(this.perform(args));
-//    }
 
     /**
      * Perform the arithmetic operation over a list of arguments

@@ -78,7 +78,7 @@ public class Constant extends Expression {
     }
 
     /**
-     * Evaluate the exopression to a numeric value
+     * Evaluate the expression to a numeric value
      * @return A long that represents the numeric value of the Expression
      */
     public long value() {

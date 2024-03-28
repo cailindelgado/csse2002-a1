@@ -52,15 +52,12 @@ public class DisplaySheet implements SheetUpdate, SheetView {
      * @requires 0 <= row < getRows(), 0 <= column < getColumns()
      */
     public UpdateResponse update(int row, int column, String input) {
-        if (checker(row, column)) {
-            try {
-                sheet[row][column] = parser.parse(input);
-                return UpdateResponse.success();
-            } catch (ParseException e) {
-                return UpdateResponse.fail("Unable to parse: " + input);
-            }
+        try {
+            sheet[row][column] = parser.parse(input);
+            return UpdateResponse.success();
+        } catch (ParseException e) {
+            return UpdateResponse.fail("Unable to parse: " + input);
         }
-        return null;
     }
 
     /**

@@ -38,17 +38,17 @@ public class Main {
 //        new FibonacciConstants(20).draw(sheet);
 
         // Stage 2: Completion of basic Sheet functionality.
-//        ExpressionFactory factory = new CoreFactory();
-//        Parser parser = new SimpleParser(factory);
-//
-//        Sheet sheet = new SheetBuilder(parser, factory.createEmpty())
-//                .includeBuiltIn("life", factory.createConstant(42))
-//                .empty(20, 10);
-//        render(sheet, sheet);
+        ExpressionFactory factory = new CoreFactory();
+        Parser parser = new SimpleParser(factory);
+
+        Sheet sheet = new SheetBuilder(parser, factory.createEmpty())
+                .includeBuiltIn("life", factory.createConstant(42))
+                .empty(20, 10);
+        render(sheet, sheet);
 
         // Stage 2a: Pre-populate sheets (just for fun).
-//        new Fibonacci(20).draw(sheet);
-//        new Pascal(4, 2).draw(sheet);
+        new Fibonacci(20).draw(sheet);
+        new Pascal(4, 2).draw(sheet);
     }
 
     private static UI render(SheetView view, SheetUpdate updater) {

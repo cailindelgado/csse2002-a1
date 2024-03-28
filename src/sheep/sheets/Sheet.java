@@ -3,9 +3,11 @@ package sheep.sheets;
 import sheep.core.*;
 import sheep.expression.Expression;
 import sheep.expression.TypeError;
+import sheep.parsing.ParseException;
 import sheep.parsing.Parser;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,9 +22,7 @@ public class Sheet implements SheetView, SheetUpdate {
     private final Expression defaultExpression;
     private final int rows;
     private final int columns;
-    private int row;
-    private int column;
-
+    private final Expression[][] sheet;
 
     /**
      * Construct a new instance of the sheet class. Is initially populated in every cell with
@@ -41,12 +41,11 @@ public class Sheet implements SheetView, SheetUpdate {
         this.builtins = builtins;
         this.defaultExpression = defaultExpression;
 
-        if ((rows > 0) && (columns > 0) && (columns < 26)) {
-            this.rows = rows;
-            this.columns = columns;
-        } else {
-            this.rows = this.columns = 10;
-        }
+        this.rows = rows;
+        this.columns = columns;
+
+        sheet = new Expression[this.rows][this.columns];
+        prepopulate();
     }
 
     /**
@@ -75,7 +74,7 @@ public class Sheet implements SheetView, SheetUpdate {
      * @return ViewElement
      */
     public ViewElement valueAt(int row, int column) {
-        return null;
+        return new ViewElement(sheet[row][column].render(), "White", "Black");
     }
 
     /**
@@ -87,10 +86,7 @@ public class Sheet implements SheetView, SheetUpdate {
      * @require location is within the bounds (row/columns) of the spreadsheet
      */
     public ViewElement formulaAt(int row, int column) {
-        if ((row < rows) && (row > 0) && (column < columns) && (column > 0)) {
-            return null;
-        }
-        return null;
+        return new ViewElement(sheet[row][column].toString(), "White", "Black");
     }
 
     /**
@@ -102,7 +98,12 @@ public class Sheet implements SheetView, SheetUpdate {
      * @return Information about the status of performing the update
      */
     public UpdateResponse update(int row, int column, String input) {
-        return null;
+        try {
+            sheet[row][column] = parser.parse(input);
+            return UpdateResponse.success();
+        } catch (ParseException e) {
+            return UpdateResponse.fail("Unable to parse: " + input);
+        }
     }
 
     /**
@@ -113,21 +114,21 @@ public class Sheet implements SheetView, SheetUpdate {
      * @require location is within the bounds (row/column) of the spreadsheet
      */
     public Expression formulaAt(CellLocation location) {
+        int row = location.getRow();
+        int column = location.getColumn();
 
-        return null;
+        return sheet[row][column];
     }
 
     /**
      * Determine which cells use the formula at the given cell location
      *
      * @param location A cell location within the spreadsheet
-     * @return All the cells which use the given cell as a dependency
+     * @return The value expression at the given cell location
+     * @requires location is within the bounds (row/columns) of the spreadsheet
      */
     public Expression valueAt(CellLocation location) {
-        row = location.getRow();
-        column = location.getColumn();
-
-        return null;
+        return formulaAt(location);
     }
 
     /**
@@ -140,6 +141,8 @@ public class Sheet implements SheetView, SheetUpdate {
      * @requires location to be within the bounds (rows/columns) of the spreadsheet
      */
     public Set<Collection> usedBy(CellLocation location) {
+        Set<Collection> collections = new HashSet<Collection>();
+
         return null;
     }
 
@@ -155,11 +158,19 @@ public class Sheet implements SheetView, SheetUpdate {
         int cellRow = location.getRow();
         int cellColumn = location.getColumn();
 
-        if (UpdateResponse.success().isSuccess()) {
-            throw new TypeError();
-        } else {
+        if (!update(cellRow, cellColumn, cell.render()).isSuccess()) {
             throw new TypeError();
         }
+    }
 
+    /**
+     * This prepopulates the current sheet with the given defaultExpression in the constructor
+     */
+    private void prepopulate() {
+        for (int row = 0; row < this.rows; row++) {
+            for (int column = 0; column < this.columns; column++) {
+                sheet[row][column] = defaultExpression;
+            }
+        }
     }
 }

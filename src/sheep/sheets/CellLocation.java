@@ -112,7 +112,7 @@ public class CellLocation {
     }
 
     /**
-     * A string representation of a cell location.*
+     * A string representation of a cell location
      * @return A string representation of this cell location, e.g. A2 or C23.
      */
     @Override
