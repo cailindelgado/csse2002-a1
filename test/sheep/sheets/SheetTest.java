@@ -46,9 +46,9 @@ public class SheetTest {
     @Test
     public void fn(){
         Parser parser = new SimpleParser(factory);
-        defaultExpression = new Reference("A2");
+        defaultExpression = new Reference("A0");
         Sheet sheet = new Sheet(parser, builtins, defaultExpression, rows, columns);
-        sheet.usedBy(new CellLocation('A', 1));
+        sheet.usedBy(new CellLocation(1, 'A'));
 
     }
 

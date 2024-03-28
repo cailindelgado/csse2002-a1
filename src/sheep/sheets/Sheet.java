@@ -168,11 +168,6 @@ public class Sheet implements SheetView, SheetUpdate {
         int cellColumn = location.getColumn();
 
         update(cellRow, cellColumn, cell.render());
-//        if (!update(cellRow, cellColumn, cell.render()).isSuccess()) {
-//            throw new TypeError();
-//        } else {
-//            sheet[cellRow][cellColumn] = cell;
-//        }
     }
 
     /**
