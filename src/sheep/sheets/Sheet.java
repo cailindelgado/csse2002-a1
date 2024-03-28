@@ -99,7 +99,7 @@ public class Sheet implements SheetView, SheetUpdate {
      */
     public UpdateResponse update(int row, int column, String input) {
         try {
-            sheet[row][column] = parser.parse(input);
+            Expression expression = parser.parse(input);
             return UpdateResponse.success();
         } catch (ParseException e) {
             return UpdateResponse.fail("Unable to parse: " + input);
@@ -140,10 +140,20 @@ public class Sheet implements SheetView, SheetUpdate {
      * @return All the cells which use the given cell as a dependency
      * @requires location to be within the bounds (rows/columns) of the spreadsheet
      */
-    public Set<Collection> usedBy(CellLocation location) {
-        Set<Collection> collections = new HashSet<Collection>();
+    public Set<CellLocation> usedBy(CellLocation location) {
+        int cellRow = location.getRow();
+        int cellColumn = location.getColumn();
+        Set<CellLocation> dependencies = new HashSet<CellLocation>();
 
-        return null;
+        Set<String> output = new HashSet<String>();
+        output.addAll(sheet[cellRow][cellColumn].dependencies());
+
+        for (String value : output) {
+            if (CellLocation.maybeReference(value).isPresent()) {
+                dependencies.add(CellLocation.maybeReference(value).get());
+            }
+        }
+        return dependencies;
     }
 
     /**
@@ -160,6 +170,8 @@ public class Sheet implements SheetView, SheetUpdate {
 
         if (!update(cellRow, cellColumn, cell.render()).isSuccess()) {
             throw new TypeError();
+        } else {
+            sheet[cellRow][cellColumn] = cell;
         }
     }
 
