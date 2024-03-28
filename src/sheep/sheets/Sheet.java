@@ -6,7 +6,6 @@ import sheep.expression.TypeError;
 import sheep.parsing.ParseException;
 import sheep.parsing.Parser;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -143,9 +142,9 @@ public class Sheet implements SheetView, SheetUpdate {
     public Set<CellLocation> usedBy(CellLocation location) {
         int cellRow = location.getRow();
         int cellColumn = location.getColumn();
-        Set<CellLocation> dependencies = new HashSet<CellLocation>();
+        HashSet<CellLocation> dependencies = new HashSet<CellLocation>();
 
-        Set<String> output = new HashSet<String>();
+        HashSet<String> output = new HashSet<String>();
         output.addAll(sheet[cellRow][cellColumn].dependencies());
 
         for (String value : output) {
