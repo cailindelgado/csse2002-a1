@@ -98,7 +98,7 @@ public class Sheet implements SheetView, SheetUpdate {
      */
     public UpdateResponse update(int row, int column, String input) {
         try {
-            Expression expression = parser.parse(input);
+            sheet[row][column] = parser.parse(input);
             return UpdateResponse.success();
         } catch (ParseException e) {
             return UpdateResponse.fail("Unable to parse: " + input);
@@ -167,11 +167,12 @@ public class Sheet implements SheetView, SheetUpdate {
         int cellRow = location.getRow();
         int cellColumn = location.getColumn();
 
-        if (!update(cellRow, cellColumn, cell.render()).isSuccess()) {
-            throw new TypeError();
-        } else {
-            sheet[cellRow][cellColumn] = cell;
-        }
+        update(cellRow, cellColumn, cell.render());
+//        if (!update(cellRow, cellColumn, cell.render()).isSuccess()) {
+//            throw new TypeError();
+//        } else {
+//            sheet[cellRow][cellColumn] = cell;
+//        }
     }
 
     /**
